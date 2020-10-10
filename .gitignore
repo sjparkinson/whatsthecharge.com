@@ -7,17 +7,15 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore local environment variables file.
+.env
+
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+log/
+tmp/
 
-# Ignore pidfiles, but keep the directory.
-/tmp/pids/*
-!/tmp/pids/
-!/tmp/pids/.keep
-
+# Ignore uploaded files in development.
+storage/
 
 /public/assets
 .byebug_history
@@ -25,9 +23,10 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/public/packs
-/public/packs-test
-/node_modules
-/yarn-error.log
+public/packs/
+public/packs-test/
+node_modules/
+
+yarn-error.log
 yarn-debug.log*
 .yarn-integrity

@@ -36,18 +36,24 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '~> 4.0'
   gem 'listen', '~> 3.2'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 2.1'
   gem 'spring-watcher-listen', '~> 2.0'
+
+  # Load environment variables from a .env file
+  gem 'dotenv-rails', '~> 2.7'
+
+  # Code linting and formatting
+  gem "rubocop", "~> 0.93"
+  gem "reek", "~> 6.0"
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 3.33'
   gem 'selenium-webdriver', '~> 3.142'
+
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers', '~> 4.4'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
