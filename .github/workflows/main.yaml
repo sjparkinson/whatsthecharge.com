@@ -118,13 +118,13 @@ jobs:
       - name: docker build
         run: |
           docker build . \
-            -t docker.pkg.github.com/${{ github.repository }}/web:${{ github.sha }} \
-            -t docker.pkg.github.com/${{ github.repository }}/web:latest
+            -t docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:${{ github.sha }} \
+            -t docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:latest
 
       - name: docker push
         run: |
-          docker push docker.pkg.github.com/${{ github.repository }}/web:${{ github.sha }}
-          docker push docker.pkg.github.com/${{ github.repository }}/web:latest
+          docker push docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:${{ github.sha }}
+          docker push docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:latest
 
       - name: install doctl
         uses: digitalocean/action-doctl@v2
@@ -153,7 +153,7 @@ jobs:
               spec:
                 containers:
                   - name: whatsthecharge.com
-                    image: docker.pkg.github.com/${{ github.repository }}/web:${{ github.sha }}
+                    image: docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:${{ github.sha }}
                     env:
                       - name: RAILS_APP_VERSION
                         value: ${{ github.sha }}
