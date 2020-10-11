@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: whatsthecharge.com
+  name: whatsthecharge-com
 spec:
   selector:
     matchLabels:
@@ -25,11 +25,11 @@ spec:
                     - key: app.kubernetes.io/name
                       operator: In
                       values:
-                        - pine
+                        - whatsthecharge.com
                 topologyKey: kubernetes.io/hostname
       containers:
-        - name: pine
-          image: docker.pkg.github.com/sjparkinson/whatsthecharge.com/web:latest
+        - name: web
+          image: docker.pkg.github.com/sjparkinson/whatsthecharge.com/whatsthecharge.com:latest
           envFrom:
             - secretRef:
                 name: whatsthecharge.com
