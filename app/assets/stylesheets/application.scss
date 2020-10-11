@@ -11,4 +11,36 @@
  * It is generally better to create a new file per style scope.
  */
 
+// Limit the grid to 4 breakpoints, with a largest max-width of 960px.
+$grid-breakpoints: (
+    xs: 0,
+    sm: 480px,
+    md: 768px,
+    lg: 1024px,
+);
+
+$container-max-widths: (
+    sm: 420px,
+    md: 720px,
+    lg: 960px,
+);
+
 @import "../../../node_modules/bootstrap/scss/bootstrap";
+
+#skip-to-content {
+    height: 1px;
+    width: 1px;
+    position: absolute;
+    overflow: hidden;
+    top: -10px;
+
+    &:focus {
+        position: fixed;
+        top: 0.5rem;
+        left: 0.5rem;
+        height: auto;
+        width: auto;
+        padding: 0.5rem 1rem;
+        z-index: $zindex-fixed;
+    }
+}

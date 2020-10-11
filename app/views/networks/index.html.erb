@@ -1,0 +1,11 @@
+<%= page_heading "Charging networks in the United Kingdom" %>
+
+<p class="lead">There are <%= @networks.length %> charging networks operating in the United Kingdom.</p>
+
+<h3>Nationwide</h3>
+
+<ul>
+<% @networks.each do |network| -%>
+<li><%= link_to network.name, network_path(network) %></li>
+<%- end %>
+</ul>

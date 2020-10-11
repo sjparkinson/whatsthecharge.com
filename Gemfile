@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
@@ -14,6 +14,9 @@ gem 'puma', '~> 4.3', '>= 4.3.6'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0'
+
+# Integrates the Ruby money gem with Rails, allowing Active Record models to have Money object backed fields.
+gem "money-rails", "~> 1.13"
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.3'
@@ -30,6 +33,9 @@ gem 'bootsnap', '~> 1.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # Load environment variables from a .env file
+  gem 'dotenv-rails', '~> 2.7'
 end
 
 group :development do
@@ -40,9 +46,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 2.1'
   gem 'spring-watcher-listen', '~> 2.0'
-
-  # Load environment variables from a .env file
-  gem 'dotenv-rails', '~> 2.7'
 
   # Code linting and formatting
   gem "rubocop", "~> 0.93"

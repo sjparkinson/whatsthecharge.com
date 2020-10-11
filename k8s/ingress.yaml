@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: whatsthecharge.com-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    nginx.ingress.kubernetes.io/proxy-body-size: 16m
+spec:
+  tls:
+    - hosts:
+        - whatsthecharge.com
+      secretName: whatsthecharge.com-tls
+  rules:
+    - host: whatsthecharge.com
+      http:
+        paths:
+          - backend:
+              serviceName: whatsthecharge.com
+              servicePort: 80

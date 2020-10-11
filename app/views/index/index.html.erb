@@ -1,3 +1,31 @@
-<div class="bg-light p-5 rounded">
-    <p class="lead">Electric vehicle charging network comparison.</p>
+
+<p class="lead">Electric vehicle charging network comparison.</p>
+
+<p><%= link_to "See all the charging networks &rarr;".html_safe, networks_path %></p>
+
+<h2 class="mb-3 mt-5">Compare the networks</h2>
+
+<div class="row row-cols-1 row-cols-md-2 mb-5">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Pay-as-you-go</h5>
+        <p class="card-text">Compare the pay-as-you-go options, where no registration is required, across the United Kingdom's public charging networks.</p>
+        <%= link_to "Compare pay-as-you-go costs", '#', class: "card-link btn btn-primary disabled" %>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Memberships</h5>
+        <p class="card-text">Compare the membership options across the United Kingdom's public charging networks.</p>
+        <%= link_to "Compare memberships", '#', class: "card-link btn btn-primary disabled" %>
+      </div>
+    </div>
+  </div>
 </div>
+
+<h2 class="mb-3">Leaderboard</h2>
+
+<p>Networks ranked by their cheapest pay-as-you-go price per kWh.</p>

@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whatsthecharge.com
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: whatsthecharge.com
+      app.kubernetes.io/part-of: whatsthecharge.com
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: whatsthecharge.com
+        app.kubernetes.io/part-of: whatsthecharge.com
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app.kubernetes.io/name
+                      operator: In
+                      values:
+                        - pine
+                topologyKey: kubernetes.io/hostname
+      containers:
+        - name: pine
+          image: docker.pkg.github.com/sjparkinson/whatsthecharge.com/web:latest
+          envFrom:
+            - secretRef:
+                name: whatsthecharge.com
+                optional: false
+          env:
+            - name: RAILS_ENV
+              value: production
+            - name: RACK_ENV
+              value: production
+            - name: LOG_LEVEL
+              value: info
+            - name: MALLOC_ARENA_MAX
+              value: '2'
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 10m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 512Mi
+          livenessProbe: &healthcheck
+            httpGet:
+              path: /healthz
+              port: 80
+              httpHeaders:
+                - name: Host
+                  value: whatsthecharge.com
+                - name: X-Forwarded-Proto
+                  value: https
+            initialDelaySeconds: 30
+          readinessProbe:
+            <<: *healthcheck
+      imagePullSecrets:
+        - name: github

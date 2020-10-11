@@ -1,0 +1,7 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+polar_instant:
+  name: Polar Instant
+  slug: polar-instant
+  url: https://polarinstant.com/
+  country: uk

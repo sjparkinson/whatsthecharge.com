@@ -4,51 +4,38 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What's the charge?</title>
+    <title><%= page_title %></title>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", media: "all" %>
+
+    <% if content_for? :head %>
+    <%= yield :head %>
+    <% end %>
   </head>
   <body>
+    <a id="skip-to-content" class="visually-hidden-focusable bg-info text-body" href="#content">Skip to main content</a>
+
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">What's the charge?</a>
+        <%= link_to "What's the charge?", root_path, class: "navbar-brand" %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link" href="#">Leaderboard</a>
+              <%= link_to "Charging networks", networks_path, class: "nav-link" %>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Networks</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pay-as-you-go</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Memberships</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav d-flex">
-            <li class="nav-item dropdown">
-              <button class="nav-link btn dropdown-toggle" type="button" id="nav-country-dropdown" data-toggle="dropdown" aria-expanded="false">
-                United Kingdom
-              </button>
-              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-country-dropdown">
-                <li><h6 class="dropdown-header">More countries coming soon</h6></li>
-              </ul>
-            </li> 
           </ul>
         </div>
       </div>
     </nav>
 
-    <main class="container">
-      <%= yield %>
+    <main id="content" role="main" class="container">
+        <%= yield %>
     </main>
 
     <%= javascript_pack_tag "application" %>
