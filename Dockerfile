@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=2
+ARG RUBY_VERSION=2.7.2
 
 FROM ruby:${RUBY_VERSION}-alpine AS build
 
@@ -12,7 +12,6 @@ RUN apk add --update --no-cache \
 COPY Gemfile Gemfile.lock package.json yarn.lock ./
 
 RUN bundle config set deployment 'true' && \
-    bundle config set path 'vendor/bundle' && \
     bundle config set without 'development:test' && \
     bundle install --jobs 4 --retry 3 && \
     bundle clean && \
@@ -29,7 +28,8 @@ FROM ruby:${RUBY_VERSION}-alpine
 
 WORKDIR /usr/src/app
 
-RUN apk add --update --no-cache postgresql-client tzdata
+RUN apk add --update --no-cache postgresql-client tzdata && \
+    bundle config set deployment 'true'
 
 COPY --from=build /usr/src/app /usr/src/app
 
