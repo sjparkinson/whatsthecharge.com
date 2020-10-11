@@ -28,9 +28,10 @@ FROM ruby:${RUBY_VERSION}-alpine
 
 WORKDIR /usr/src/app
 
-RUN apk add --update --no-cache postgresql-client tzdata && \
-    bundle config set deployment 'true'
+RUN apk add --update --no-cache postgresql-client tzdata file && \
+    mkdir -p tmp/pids
 
+COPY --from=build /usr/local/bundle/ /usr/local/bundle/
 COPY --from=build /usr/src/app /usr/src/app
 
 ENV PORT=80
