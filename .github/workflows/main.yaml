@@ -152,7 +152,7 @@ jobs:
             template:
               spec:
                 containers:
-                  - name: whatsthecharge.com
+                  - name: web
                     image: docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:${{ github.sha }}
                     env:
                       - name: RAILS_APP_VERSION
