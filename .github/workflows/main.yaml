@@ -112,14 +112,22 @@ jobs:
               mediaType: { previews: ['flash', 'ant-man'] }
             })
 
+      - name: install pack
+        run: curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.14.1/pack-v0.14.1-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack
+
       - name: docker login
         run: docker login docker.pkg.github.com --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
 
-      - name: docker build
+      - name: pack build
         run: |
-          docker build . \
-            -t docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:${{ github.sha }} \
-            -t docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:latest
+          pack build --builder heroku/buildpacks --buildpack heroku/ruby \
+            docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:${{ github.sha }}
+
+      - name: docker tag
+        run: |
+          docker tag \
+          docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:${{ github.sha }} \
+          docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:latest
 
       - name: docker push
         run: |

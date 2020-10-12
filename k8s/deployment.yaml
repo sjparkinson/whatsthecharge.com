@@ -44,7 +44,7 @@ spec:
             - name: MALLOC_ARENA_MAX
               value: '2'
           ports:
-            - containerPort: 80
+            - containerPort: 5000
           resources:
             requests:
               cpu: 10m
@@ -55,7 +55,7 @@ spec:
           livenessProbe: &healthcheck
             httpGet:
               path: /healthz
-              port: 80
+              port: 5000
               httpHeaders:
                 - name: Host
                   value: whatsthecharge.com
