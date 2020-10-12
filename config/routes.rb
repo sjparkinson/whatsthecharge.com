@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
   get '/', to: 'index#root', as: 'apex'
 
-  get ':country', to: 'index#index', as: 'root'
+  get '/:country', country: "uk", to: 'index#index', as: 'root'
 
-  scope ':country', country: "uk" do
+  scope '/:country', country: "uk" do
     resources :networks, param: :slug, only: [:index, :show]
   end
 end
