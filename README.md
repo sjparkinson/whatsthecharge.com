@@ -4,6 +4,7 @@ Electric vehicle public charging network comparison.
 
 ```
 bundle install
+bundle exec rails db:create db:migrate db:seed
 bundle exec rails s
 ```
 
