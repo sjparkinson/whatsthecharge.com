@@ -33,9 +33,6 @@ gem 'bootsnap', '~> 1.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-
-  # Load environment variables from a .env file
-  gem 'dotenv-rails', '~> 2.7'
 end
 
 group :development do
@@ -50,6 +47,9 @@ group :development do
   # Code linting and formatting
   gem "rubocop", "~> 0.93"
   gem "reek", "~> 6.0"
+
+  # Load environment variables from a .env file
+  gem 'dotenv-rails', '~> 2.7'
 end
 
 group :test do
