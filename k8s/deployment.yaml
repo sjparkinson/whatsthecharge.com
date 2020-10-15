@@ -37,10 +37,11 @@ spec:
           env:
             - name: RAILS_ENV
               value: production
-            - name: RACK_ENV
-              value: production
+            - name: RAILS_LOG_TO_STDOUT
+              value: 'true'
             - name: LOG_LEVEL
               value: info
+            # Decrease the memory usage, see https://devcenter.heroku.com/changelog-items/1683
             - name: MALLOC_ARENA_MAX
               value: '2'
           ports:

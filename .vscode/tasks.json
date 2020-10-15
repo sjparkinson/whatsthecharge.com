@@ -7,13 +7,15 @@
             "label": "bundle install",
             "type": "shell",
             "command": "source /usr/local/rvm/scripts/rvm; rvm use; bundle install",
-            "group": "build"
+            "group": "build",
+            "problemMatcher": []
         },
         {
             "label": "yarn install",
             "type": "shell",
             "command": "yarn install",
-            "group": "build"
+            "group": "build",
+            "problemMatcher": []
         },
         {
             "label": "Run tests",
@@ -22,15 +24,25 @@
             "group": {
                 "kind": "test",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": []
         },
         {
             "label": "Install dependencies",
-            "dependsOn": ["bundle install", "yarn install"],
+            "dependsOn": [
+                "bundle install",
+                "yarn install"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Serve",
+            "type": "shell",
+            "command": "source /usr/local/rvm/scripts/rvm; rvm use; bundle exec rails server",
+            "problemMatcher": []
         }
     ]
 }

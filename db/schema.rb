@@ -20,11 +20,10 @@ ActiveRecord::Schema.define(version: 2020_10_11_113352) do
     t.string "rateable_type"
     t.uuid "rateable_id"
     t.text "description"
-    t.integer "price_per_kwh_cents", default: 0, null: false
-    t.string "price_per_kwh_currency", default: "USD", null: false
-    t.integer "price_per_minute_cents", default: 0, null: false
-    t.string "price_per_minute_currency", default: "USD", null: false
-    t.string "currency", null: false, comment: "ISO 4217 three character currency code."
+    t.money "price_per_kwh", scale: 2, null: false, comment: "Cost per kWh for this charging speed."
+    t.string "price_per_kwh_currency", null: false, comment: "ISO 4217 three character currency code."
+    t.money "price_per_minute", scale: 2, null: false, comment: "Cost per minute for this charging speed."
+    t.string "price_per_minute_currency", null: false, comment: "ISO 4217 three character currency code."
     t.integer "charging_rates", comment: "Charging speeds supported by this rate in kWh, e.g. 7, 22, and 50.", array: true
     t.datetime "begins_at", comment: "When this charging rate becomes available."
     t.datetime "ends_at", comment: "When this charging rate becomes unavailable."
@@ -45,11 +44,10 @@ ActiveRecord::Schema.define(version: 2020_10_11_113352) do
   create_table "membership_plans", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Network memberships, e.g. Source London's Full membership.", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.integer "price_one_off_cents", default: 0, null: false
-    t.string "price_one_off_currency", default: "USD", null: false
-    t.integer "price_per_month_cents", default: 0, null: false
-    t.string "price_per_month_currency", default: "USD", null: false
-    t.string "currency", null: false, comment: "ISO 4217 three character currency code."
+    t.money "price_one_off", scale: 2, comment: "One-off cost to become a member, e.g. Source London's Flexi membership."
+    t.string "price_one_off_currency", null: false, comment: "ISO 4217 three character currency code."
+    t.money "price_per_month", scale: 2
+    t.string "price_per_month_currency", null: false, comment: "ISO 4217 three character currency code."
     t.uuid "network_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -58,8 +56,9 @@ ActiveRecord::Schema.define(version: 2020_10_11_113352) do
 
   create_table "networks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
+    t.text "description"
     t.string "slug", null: false
-    t.string "url", null: false
+    t.string "link", null: false
     t.uuid "country_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -66,14 +66,11 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
-      - name: Run rails assets:precompile
-        run: bundle exec rails assets:precompile
+      - run: bundle exec rails assets:precompile
 
-      - name: Run rails db:migrate
-        run: bundle exec rails db:migrate
+      - run: bundle exec rails db:setup
 
-      - name: Run rails test
-        run: bundle exec rails test
+      - run: bundle exec rails test
 
   deploy:
     runs-on: ubuntu-latest
@@ -85,7 +82,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: github deployment
+      - name: Create GitHub deployment
         id: deployment
         uses: actions/github-script@v3
         with:
@@ -100,7 +97,7 @@ jobs:
 
             return deployment.data.id;
 
-      - name: github deployment in progress
+      - name: Create GitHub deployment in progress status
         uses: actions/github-script@v3
         with:
           script: |
@@ -112,44 +109,43 @@ jobs:
               mediaType: { previews: ['flash', 'ant-man'] }
             })
 
-      - name: install pack
+      - name: Install pack
         run: curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.14.1/pack-v0.14.1-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack
 
-      - name: docker login
+      - name: Run docker login
         run: docker login docker.pkg.github.com --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
 
-      - name: pack build
+      - name: Run pack build
         run: |
           pack build --builder heroku/buildpacks --buildpack heroku/ruby \
             docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:${{ github.sha }}
 
-      - name: docker tag
+      - name: Run docker tag
         run: |
           docker tag \
           docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:${{ github.sha }} \
           docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:latest
 
-      - name: docker push
+      - name: Run docker push
         run: |
           docker push docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:${{ github.sha }}
           docker push docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:latest
 
-      - name: install doctl
+      - name: Run install doctl
         uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
-      - name: doctl kubernetes kubeconfig
-        run: doctl kubernetes cluster kubeconfig save k8s-lon1
+      - run: doctl kubernetes cluster kubeconfig save k8s-lon1
 
-      - name: kustomize
+      - name: Generate kustomize yaml files
         run: |
           cat >> k8s/kustomization.yaml <<EOF
           patchesStrategicMerge:
-            - image.yaml
+            - deployment-${{ github.sha }}.yaml
           EOF
 
-          cat > k8s/image.yaml <<EOF
+          cat > k8s/deployment-${{ github.sha }}.yaml <<EOF
           apiVersion: apps/v1
           kind: Deployment
           metadata:
@@ -167,13 +163,11 @@ jobs:
                         value: ${{ github.sha }}
           EOF
 
-      - name: kubectl apply
-        run: kubectl apply -k k8s/
+      - run: kubectl apply -k k8s/
 
-      - name: kubectl rollout status
-        run: kubectl rollout status deployment/whatsthecharge.com --timeout=5m
+      - run: kubectl rollout status deployment/whatsthecharge.com --timeout=5m
 
-      - name: github deployment success
+      - name: Create GitHub deployment success status
         uses: actions/github-script@v3
         if: success()
         with:
@@ -188,7 +182,7 @@ jobs:
               mediaType: { previews: ['flash', 'ant-man'] }
             })
 
-      - name: github deployment failure
+      - name: Create GitHub deployment failure status
         uses: actions/github-script@v3
         if: cancelled() || failure()
         with:

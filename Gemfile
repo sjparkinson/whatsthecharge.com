@@ -12,11 +12,11 @@ gem 'pg', '~> 1.2', '>= 1.2.3'
 # Use Puma as the app server
 gem 'puma', '~> 4.3', '>= 4.3.6'
 
+# Use Haml for view templates
+gem 'haml', '~> 5.2'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0'
-
-# Integrates the Ruby money gem with Rails, allowing Active Record models to have Money object backed fields.
-gem "money-rails", "~> 1.13"
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.3'

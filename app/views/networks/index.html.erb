@@ -4,8 +4,15 @@
 
 <h3>Nationwide</h3>
 
-<ul>
-<% @networks.each do |network| -%>
-<li><%= link_to network.name, network_path(network) %></li>
-<%- end %>
-</ul>
+<div class="row row-cols-1 row-cols-md-3 g-3">
+    <% @networks.each do |network| -%>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><%= network.name %></h5>
+                <p class="card-text">Foo bar description for the network.</p>
+            </div>
+        </div>
+    </div>
+    <%- end %>
+</div>

@@ -1,7 +1,7 @@
 class Network < ApplicationRecord
   validates :name, presence: true
   validates :slug, format: { with: /\A[a-z0-9]+(?:-[a-z0-9]+)*\z/ }, presence: true, uniqueness: { case_sensitive: false }
-  validates :url, presence: true
+  validates :link, presence: true
 
   belongs_to :country
   has_many :membership_plans

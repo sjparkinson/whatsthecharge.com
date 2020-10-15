@@ -1,0 +1,28 @@
+
+%p.lead Electric vehicle charging network comparison.
+
+%p.lead= link_to "See all the charging networks &rarr;".html_safe, networks_path
+
+%h2 Compare the networks
+
+.row.row-cols-1.row-cols-md-2.g-3
+  .col
+    .card
+      .card-body
+        %h5.card-title Pay-as-you-go
+
+        %p.card-text
+          Compare the pay-as-you-go options, where no registration is required,
+          across the United Kingdom's public charging networks.
+
+        = link_to "Compare pay-as-you-go costs", '#', class: "btn btn-primary"
+  .col
+    .card
+      .card-body
+        %h5.card-title Memberships
+
+        %p.card-text
+          Compare the membership options across the United Kingdom's
+          public charging networks.
+
+        = link_to "Compare membership costs", '#', class: "btn btn-primary"

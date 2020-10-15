@@ -5,19 +5,20 @@ class CreateChargingRates < ActiveRecord::Migration[6.0]
 
       t.text :description
 
-      t.monetize :price_per_kwh, null: false, comment: 'Cost per kWh for this charging speed.'
-      t.monetize :price_per_minute, null: false, comment: 'Cost per minute for this charging speed.'
+      t.money :price_per_kwh, null: false, comment: 'Cost per kWh for this charging speed.'
+      t.string :price_per_kwh_currency, size: 3, null: false, comment: 'ISO 4217 three character currency code.'
 
-      t.string :currency, null: false, comment: 'ISO 4217 three character currency code.'
+      t.money :price_per_minute, null: false, comment: 'Cost per minute for this charging speed.'
+      t.string :price_per_minute_currency, size: 3, null: false, comment: 'ISO 4217 three character currency code.'
 
-      t.integer :charging_rates, array: true, comment: 'Charging speeds supported by this rate in kWh, e.g. 7, 22, and 50.'
-
-      t.index :charging_rates, using: 'gin'
+      t.integer :supported_charging_speeds, array: true, comment: 'Charging speeds supported by this rate in kWh, e.g. 7, 22, and 50.'
 
       t.datetime :begins_at, comment: 'When this charging rate becomes available.'
       t.datetime :ends_at, comment: 'When this charging rate becomes unavailable.'
 
       t.timestamps
+
+      t.index :supported_charging_speeds, using: 'gin'
     end
   end
 end

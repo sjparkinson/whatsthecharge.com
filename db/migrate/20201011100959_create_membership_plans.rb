@@ -4,10 +4,11 @@ class CreateMembershipPlans < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.text :description
 
-      t.monetize :price_one_off, null: true, comment: 'One-off cost to become a member, e.g. Source London\'s Flexi membership.'
-      t.monetize :price_per_month, null: true
+      t.money :price_one_off, null: true, comment: 'One-off cost to become a member, e.g. Source London\'s Flexi membership.'
+      t.string :price_one_off_currency, size: 3, null: false, comment: 'ISO 4217 three character currency code.'
 
-      t.string :currency, null: false, comment: 'ISO 4217 three character currency code.'
+      t.money :price_per_month, null: true
+      t.string :price_per_month_currency, size: 3, null: false, comment: 'ISO 4217 three character currency code.'
 
       t.belongs_to :network, type: :uuid, foreign_key: true, index: true
 

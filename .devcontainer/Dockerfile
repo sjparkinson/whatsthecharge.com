@@ -14,5 +14,4 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends postgresql
 
 # Create a .env file
-RUN echo "DATABASE_URL=postgres://postgres:postgres@localhost:5432/whatsthecharge_development" > .env && \
-    echo "SECRET_KEY_BASE=$(bundle exec rails secret)" >> .env
+RUN echo "SECRET_KEY_BASE=$(bundle exec rails secret)" > .env
