@@ -4,10 +4,10 @@
 
 %h3 Nationwide
 
-.row.rol-cols-1.rol-cols-md-3.g-3
+.row.row-cols-1.row-cols-md-3.g-3
   - @networks.each do |network|
     .col
       .card
         .card-body
           %h5.card-title= network.name
-          %p.card-text= network.description
+          %p.card-text= network.description.truncate_words(50)
