@@ -5,17 +5,18 @@ Rails.application.routes.draw do
   get 'healthz', to: 'index#healthz'
 
   # Redirect to a country from the actual root path
-  get '/', to: 'index#root', as: 'apex'
+  root to: 'index#root'
 
-  get '/:country', country: /uk/, to: 'index#index', as: 'root'
+  get '/uk', to: 'index#uk', as: 'uk'
 
-  scope '/:country', country: /uk/ do
-    resources :networks, param: :slug, only: [:index, :show]
+  scope ':countryCode', countryCode: /uk/ do
+    resources :networks, param: :slug, only: [:index]
   end
 
   # Manage the records, add new networks, update prices, etc.
   namespace :manage do
-    resources :country, :networks
+    resources :countries, only: [:index, :create, :new, :edit, :update]
+    resources :networks
 
     resources :payg_plans, :membership_plans do
       resources :charging_rates, shallow: true

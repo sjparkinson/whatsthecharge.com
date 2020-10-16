@@ -1,0 +1,11 @@
+= render 'nav'
+
+%nav{'aria-label': "breadcrumbs"}
+  %ol.breadcrumb
+    %li.breadcrumb-item Manage
+    %li.breadcrumb-item= link_to "Network", manage_networks_path
+    %li.breadcrumb-item.active{'aria-current': "page"} Add a Network
+
+= page_heading "Add a Network"
+
+= render 'form', network: @network

@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 2020_10_11_113352) do
     t.string "price_per_kwh_currency", null: false, comment: "ISO 4217 three character currency code."
     t.money "price_per_minute", scale: 2, null: false, comment: "Cost per minute for this charging speed."
     t.string "price_per_minute_currency", null: false, comment: "ISO 4217 three character currency code."
-    t.integer "charging_rates", comment: "Charging speeds supported by this rate in kWh, e.g. 7, 22, and 50.", array: true
+    t.integer "supported_charging_speeds", comment: "Charging speeds supported by this rate in kWh, e.g. 7, 22, and 50.", array: true
     t.datetime "begins_at", comment: "When this charging rate becomes available."
     t.datetime "ends_at", comment: "When this charging rate becomes unavailable."
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["charging_rates"], name: "index_charging_rates_on_charging_rates", using: :gin
     t.index ["rateable_type", "rateable_id"], name: "index_charging_rates_on_rateable_type_and_rateable_id"
+    t.index ["supported_charging_speeds"], name: "index_charging_rates_on_supported_charging_speeds", using: :gin
   end
 
   create_table "countries", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Supported countries.", force: :cascade do |t|
@@ -58,7 +58,8 @@ ActiveRecord::Schema.define(version: 2020_10_11_113352) do
     t.string "name", null: false
     t.text "description"
     t.string "slug", null: false
-    t.string "link", null: false
+    t.string "website_url", null: false
+    t.string "pricing_url"
     t.uuid "country_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

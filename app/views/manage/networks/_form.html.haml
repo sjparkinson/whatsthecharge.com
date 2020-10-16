@@ -1,0 +1,37 @@
+- if @network.errors.any?
+  %ul
+    - @network.errors.full_messages.each do |error|
+      %li= error
+
+= form_with model: [:manage, @network], local: true do |form|
+
+  .mb-3
+    = form.label :name, class: 'form-label'
+    = form.text_field :name, class: 'form-control'
+
+  .mb-3
+    = form.label :description, class: 'form-label'
+    = form.text_area :description, class: 'form-control'
+
+  .mb-3
+    = form.label :slug, class: 'form-label'
+    .input-group
+      %span.input-group-text <code>/:country/networks/</code>
+      = form.text_field :slug, class: 'form-control', 'aria-describedby': 'network_slug_help'
+    .form-text#network_slug_help Used to generate a human friendly URL for this network, e.g. <code>/uk/networks/<b>ubitricity</b></code>.
+
+  .mb-3
+    = form.label :website_url, class: 'form-label'
+    = form.text_field :website_url, class: 'form-control'
+
+  .mb-3
+    = form.label :pricing_url, class: 'form-label'
+    = form.text_field :pricing_url, class: 'form-control', 'aria-describedby': 'network_pricing_url_help'
+    .form-text#network_pricing_url_help Optional.
+
+  .mb-3
+    = form.label :country_id, class: 'form-label'
+    = form.collection_select :country_id, Country.all, :id, :name, { prompt: true }, { class: "form-select" }
+
+  .mb-3
+    = form.submit class: 'btn btn-primary'

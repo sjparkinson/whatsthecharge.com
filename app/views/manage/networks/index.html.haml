@@ -1,0 +1,23 @@
+= render 'nav'
+
+= page_heading "Networks"
+
+%table.table
+  %thead
+    %tr
+      %th{scope: "col"} #
+      %th{scope: "col"}= t :name, scope: [:activerecord, :attributes, :network]
+      %th{scope: "col"}= t :name, scope: [:activerecord, :attributes, :country]
+      %th{scope: "col"}
+
+  %tbody
+    - @networks.each_with_index do |network, index|
+      %tr
+        %td= index + 1
+        %td= network.name
+        %td= network.country.name
+        %td.text-right
+          = link_to 'Update', edit_manage_network_path(network)
+          = link_to 'Remove', manage_network_path(network), method: 'delete', class: 'link-danger'
+
+%p= link_to 'Add a Network', new_manage_network_path, class: "btn btn-primary"

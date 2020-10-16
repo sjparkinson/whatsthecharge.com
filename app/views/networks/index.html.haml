@@ -1,0 +1,13 @@
+= page_heading "Charging networks in the United Kingdom"
+
+%p.lead= "There are #{@networks.length} charging networks operating in the United Kingdom."
+
+%h3 Nationwide
+
+.row.rol-cols-1.rol-cols-md-3.g-3
+  - @networks.each do |network|
+    .col
+      .card
+        .card-body
+          %h5.card-title= network.name
+          %p.card-text= network.description

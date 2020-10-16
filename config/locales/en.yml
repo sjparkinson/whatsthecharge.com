@@ -30,4 +30,18 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  helpers:
+    submit:
+      create: "Add a %{model}"
+      update: "Confirm changes"
+  activerecord:
+    attributes:
+      country:
+        name: Country
+        countryCode: Country code
+      network:
+        name: Name
+        description: Description
+        slug: Slug
+        website_url: Website URL
+        pricing_url: Pricing URL

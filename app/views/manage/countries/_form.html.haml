@@ -1,0 +1,18 @@
+- if @country.errors.any?
+  %ul
+    - @country.errors.full_messages.each do |error|
+      %li= error
+
+= form_with model: [:manage, @country], local: true do |form|
+
+  .mb-3
+    = form.label :name, class: 'form-label'
+    = form.text_field :name, class: 'form-control'
+
+  .mb-3
+    = form.label :countryCode, class: 'form-label'
+    = form.text_field :countryCode, class: 'form-control', 'aria-describedby': 'country_countryCode_help'
+    .form-text#country_countryCode_help Should be a lowercase two letter <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country code</a>.
+
+  .mb-3
+    = form.submit class: 'btn btn-primary'

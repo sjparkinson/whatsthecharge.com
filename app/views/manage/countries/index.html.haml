@@ -1,0 +1,25 @@
+= render 'nav'
+
+= page_heading "Countries"
+
+%table.table
+  %thead
+    %tr
+      %th{scope: "col"} #
+      %th{scope: "col"}= t :name, scope: [:activerecord, :attributes, :country]
+      %th{scope: "col"}= t :countryCode, scope: [:activerecord, :attributes, :country]
+      %th{scope: "col"} Number of Networks
+      %th{scope: "col"}
+
+  %tbody
+    - @countries.each_with_index do |country, index|
+      %tr
+        %td= index + 1
+        %td= country.name
+        %td
+          %code= country.countryCode
+        %td= country.networks.size
+        %td.text-right
+          = link_to 'Update', edit_manage_country_path(country)
+
+%p= link_to 'Add a country', new_manage_country_path, class: "btn btn-primary"
