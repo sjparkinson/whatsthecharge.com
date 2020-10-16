@@ -64,7 +64,8 @@ ActiveRecord::Schema.define(version: 2020_10_11_113352) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["country_id"], name: "index_networks_on_country_id"
-    t.index ["slug"], name: "index_networks_on_slug", unique: true
+    t.index ["slug", "country_id"], name: "index_networks_on_slug_and_country_id", unique: true
+    t.index ["slug"], name: "index_networks_on_slug"
   end
 
   create_table "payg_plans", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Network pay-as-you-go plans, e.g. Polar Instant.", force: :cascade do |t|

@@ -13,6 +13,7 @@ class CreateNetworks < ActiveRecord::Migration[6.0]
       t.timestamps
 
       t.index :slug
+      t.index [:slug, :country_id], unique: true
     end
   end
 end

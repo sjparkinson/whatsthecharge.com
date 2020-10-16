@@ -1,7 +1,8 @@
-- if @country.errors.any?
-  %ul
-    - @country.errors.full_messages.each do |error|
-      %li= error
+.alert.alert-danger{role: "alert"}
+  - if @country.errors.any?
+    %ul.mb-0
+      - @country.errors.full_messages.each do |error|
+        %li= error
 
 = form_with model: [:manage, @country], local: true do |form|
 
