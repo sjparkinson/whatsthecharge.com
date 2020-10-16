@@ -2,12 +2,12 @@ require 'test_helper'
 
 class IndexControllerTest < ActionDispatch::IntegrationTest
   test 'should redirect root to country' do
-    get apex_url
-    assert_redirected_to root_url
+    get root_url
+    assert_redirected_to uk_url
   end
 
   test 'should get /uk' do
-    get root_url(country: 'uk')
+    get uk_url
     assert_response :success
   end
 
