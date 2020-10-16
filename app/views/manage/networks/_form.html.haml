@@ -1,5 +1,5 @@
-.alert.alert-danger{role: "alert"}
-  - if @network.errors.any?
+- if @network.errors.any?
+  .alert.alert-danger{role: "alert"}
     %ul.mb-0
       - @network.errors.full_messages.each do |error|
         %li= error

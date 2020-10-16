@@ -1,5 +1,5 @@
-.alert.alert-danger{role: "alert"}
-  - if @country.errors.any?
+- if @country.errors.any?
+  .alert.alert-danger{role: "alert"}
     %ul.mb-0
       - @country.errors.full_messages.each do |error|
         %li= error
