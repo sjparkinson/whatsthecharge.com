@@ -47,6 +47,10 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
+  # Use lograge to format logs, disable if the log level is debug
+  config.lograge.enabled = ENV.fetch('LOG_LEVEL', 'debug').to_sym != :debug
+  config.lograge.ignore_actions = ['IndexController#healthz']
+
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 

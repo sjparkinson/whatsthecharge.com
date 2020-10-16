@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.10'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1'
 
+# Use lograge to format production logs
+gem 'lograge', '~> 0.11'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '~> 1.4', require: false
 
