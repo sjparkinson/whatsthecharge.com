@@ -39,8 +39,7 @@ class Manage::NetworksController < Manage::ApplicationController
 
   def destroy
     @network.destroy
-
-    redirect_to manage_network_index
+    redirect_to manage_networks_path
   end
 
   private

@@ -18,6 +18,6 @@
         %td= network.country.name
         %td.text-right
           = link_to 'Update', edit_manage_network_path(network)
-          = link_to 'Remove', manage_network_path(network), method: 'delete', class: 'link-danger'
+          = link_to 'Remove', manage_network_path(network), method: 'delete', class: 'link-danger', data: { confirm: "Are you sure?" }
 
 %p= link_to 'Add a Network', new_manage_network_path, class: "btn btn-primary"
