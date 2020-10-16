@@ -1,13 +1,14 @@
 = page_heading "Charging networks in the United Kingdom"
 
-%p.lead= "There are #{@networks.length} charging networks operating in the United Kingdom."
+%p.lead= "There are #{@networks.length} charging networks tracked by What's the Charge? in the United Kingdom."
 
 %h3 Nationwide
 
-.row.row-cols-1.row-cols-md-3.g-3
+.row.row-cols-1.row-cols-md-3.g-3.mb-3
   - @networks.each do |network|
     .col
       .card
         .card-body
           %h5.card-title= network.name
-          %p.card-text= network.description.truncate_words(50)
+          %p.card-text= network.description.truncate_words(25)
+          = link_to "Go to the #{network.name} website", network.website_url
