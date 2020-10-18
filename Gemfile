@@ -10,7 +10,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 gem 'pg', '~> 1.2', '>= 1.2.3'
 
 # Use Puma as the app server
-gem 'puma', '~> 4.3', '>= 4.3.6'
+gem 'puma', '~> 5.0', '>= 5.0.2'
 
 # Use Haml for view templates
 gem 'haml', '~> 5.2'
