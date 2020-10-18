@@ -1,1 +1,1 @@
-web: bundle exec puma -c config/puma.rb --early-hints
+web: bundle exec puma --config config/puma.rb --early-hints
