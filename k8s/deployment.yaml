@@ -30,6 +30,8 @@ spec:
       containers:
         - name: web
           image: docker.pkg.github.com/sjparkinson/whatsthecharge.com/whatsthecharge.com:latest
+          command: [ "/cnb/lifecycle/launcher" ]
+          args: ["bundle", "exec", "puma", "--port", "3000", "--early-hints"]
           envFrom:
             - secretRef:
                 name: whatsthecharge.com
@@ -45,7 +47,7 @@ spec:
             - name: MALLOC_ARENA_MAX
               value: '2'
           ports:
-            - containerPort: 5000
+            - containerPort: 3000
           resources:
             requests:
               cpu: 10m
@@ -56,7 +58,7 @@ spec:
           livenessProbe: &healthcheck
             httpGet:
               path: /healthz
-              port: 5000
+              port: 3000
               httpHeaders:
                 - name: Host
                   value: whatsthecharge.com
