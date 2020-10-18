@@ -31,14 +31,14 @@
     .form-text#network_pricing_url_help Optional.
 
   .mb-3
-    = form.label :android_app_id, class: 'form-label'
-    = form.text_field :android_app_id, class: 'form-control', 'aria-describedby': 'network_android_app_id_help'
-    .form-text#network_android_app_id_help Optional.
+    = form.label :android_app_url, class: 'form-label'
+    = form.text_field :android_app_url, class: 'form-control', 'aria-describedby': 'network_android_app_url_help'
+    .form-text#network_android_app_url_help e.g. <code>https://play.google.com/store/apps/details?id=com.ubitricity</code>. Optional.
 
   .mb-3
-    = form.label :ios_app_id, class: 'form-label'
-    = form.text_field :ios_app_id, class: 'form-control', 'aria-describedby': 'network_ios_app_id_help'
-    .form-text#network_ios_app_id_help Optional.
+    = form.label :ios_app_url, class: 'form-label'
+    = form.text_field :ios_app_url, class: 'form-control', 'aria-describedby': 'network_ios_app_url_help'
+    .form-text#network_ios_app_url_help e.g. <code>https://apps.apple.com/gb/app/ubitricity/id1031238194</code>. Optional.
 
   .mb-3
     = form.label :country_id, class: 'form-label'
