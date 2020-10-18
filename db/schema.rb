@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_11_113352) do
+ActiveRecord::Schema.define(version: 2020_10_18_213200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -63,7 +63,11 @@ ActiveRecord::Schema.define(version: 2020_10_11_113352) do
     t.uuid "country_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "android_app_id"
+    t.string "ios_app_id"
+    t.index ["android_app_id"], name: "index_networks_on_android_app_id", unique: true
     t.index ["country_id"], name: "index_networks_on_country_id"
+    t.index ["ios_app_id"], name: "index_networks_on_ios_app_id", unique: true
     t.index ["slug", "country_id"], name: "index_networks_on_slug_and_country_id", unique: true
     t.index ["slug"], name: "index_networks_on_slug"
   end
