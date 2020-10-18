@@ -168,7 +168,9 @@ jobs:
       - run: kubectl rollout status deployment/whatsthecharge.com --timeout=5m
 
       - name: Run rails db:migrate
-        run: kubectl exec deployment/whatsthecharge.com --pod-running-timeout=5m -- /cnb/lifecycle/launcher bundle exec rails db:migrate
+        run: |
+          sleep 30
+          kubectl exec deployment/whatsthecharge.com -- /cnb/lifecycle/launcher bundle exec rails db:migrate
 
       - name: Create GitHub deployment success status
         uses: actions/github-script@v3

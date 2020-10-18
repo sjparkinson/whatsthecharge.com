@@ -45,3 +45,5 @@ en:
         slug: Slug
         website_url: Website URL
         pricing_url: Pricing URL
+        android_app_id: Android Application ID
+        ios_app_id: iOS App ID
