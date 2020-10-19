@@ -171,7 +171,7 @@ jobs:
 
       - name: Run rails db:migrate
         run: |
-          sleep 30
+          sleep 10 # Wait for old pod to be removed before running `kubectl exec`
           kubectl exec deployment/whatsthecharge.com -- /cnb/lifecycle/launcher bundle exec rails db:migrate
 
       - name: Create GitHub deployment success status
