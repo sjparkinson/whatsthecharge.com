@@ -1,21 +1,19 @@
 class Network < ApplicationRecord
   include NormalizeBlankValues
 
-  validates :name, presence: true
-  validates :description, presence: true
-  validates :slug, format: { with: /\A[a-z0-9]+(?:-[a-z0-9]+)*\z/, message: "must be a lowercase alpha-numeric value, which can include hyphens" }, presence: true, uniqueness: { scope: :country, case_sensitive: false }
-  validates :website_url, presence: true
-  validates :country, presence: true
+  validates_presence_of :name
+  validates_presence_of :description
+  validates_presence_of :slug
+  validates_presence_of :website_url
+  validates_presence_of :country
 
-  validates :android_app_url,
-    format: { with: /\Ahttps:\/\/play\.google\.com\/store\/apps\/details\?id=[^&]+\z/, message: "must be a valid Google Play App URL" },
-    uniqueness: true,
-    allow_nil: true
+  validates_uniqueness_of :slug, scope: :country
+  validates_uniqueness_of :android_app_url, allow_nil: true
+  validates_uniqueness_of :ios_app_url, allow_nil: true
 
-  validates :ios_app_url,
-    format: { with: /\Ahttps:\/\/apps\.apple\.com\/gb\/app\/[^\/]+\/id\d+\z/, message: "must be a valid App Store App URL" },
-    uniqueness: true,
-    allow_nil: true
+  validates_format_of :slug, with: /\A[a-z0-9]+(?:-[a-z0-9]+)*\z/, message: "must be a lowercase alpha-numeric value, which can include hyphens"
+  validates_format_of :android_app_url, with: /\Ahttps:\/\/play\.google\.com\/store\/apps\/details\?id=[^&]+\z/, message: "must be a valid Google Play App URL", allow_nil: true
+  validates_format_of :ios_app_url, with: /\Ahttps:\/\/apps\.apple\.com\/gb\/app\/[^\/]+\/id\d+\z/, message: "must be a valid App Store App URL", allow_nil: true
 
   belongs_to :country
   has_many :membership_plans
