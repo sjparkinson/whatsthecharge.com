@@ -5,8 +5,8 @@ class Network < ApplicationRecord
   validates :website_url, presence: true
   validates :country, presence: true
 
-  validates :android_app_url, uniqueness: true
-  validates :ios_app_url, uniqueness: true
+  validates :android_app_url, format: { with: /\Ahttps:\/\/play\.google\.com\/store\/apps\/details\?id=[^&]+\z/, message: "must be a valid Google Play App URL" }, uniqueness: true
+  validates :ios_app_url, format: { with: /\Ahttps:\/\/apps\.apple\.com\/gb\/app\/[^\/]+\/id\d+\z/, message: "must be a valid App Store App URL" }, uniqueness: true
 
   belongs_to :country
   has_many :membership_plans
