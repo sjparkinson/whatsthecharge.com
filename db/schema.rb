@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_19_203256) do
+ActiveRecord::Schema.define(version: 2020_10_19_222303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_203256) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "started_at", precision: 6
     t.datetime "ended_at", precision: 6
+    t.string "plan_url"
     t.index ["network_id"], name: "index_membership_plans_on_network_id"
   end
 
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_203256) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "started_at", precision: 6
     t.datetime "ended_at", precision: 6
+    t.string "plan_url"
     t.index ["network_id"], name: "index_payg_plans_on_network_id"
   end
 

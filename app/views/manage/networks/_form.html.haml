@@ -8,41 +8,41 @@
 
   .mb-3
     = form.label :name, class: 'form-label'
-    = form.text_field :name, class: 'form-control'
+    = form.text_field :name, required: true, class: 'form-control'
 
   .mb-3
     = form.label :description, class: 'form-label'
-    = form.text_area :description, class: 'form-control'
+    = form.text_area :description, required: true, class: 'form-control'
 
   .mb-3
     = form.label :slug, class: 'form-label'
     .input-group
       %span.input-group-text <code>/:country/networks/</code>
-      = form.text_field :slug, class: 'form-control', 'aria-describedby': 'network_slug_help'
+      = form.text_field :slug, required: true, class: 'form-control', 'aria-describedby': 'network_slug_help'
     .form-text#network_slug_help Used to generate a human friendly URL for this network, e.g. <code>/uk/networks/<b>ubitricity</b></code>.
 
   .mb-3
     = form.label :website_url, class: 'form-label'
-    = form.text_field :website_url, class: 'form-control'
+    = form.url_field :website_url, required: true, class: 'form-control'
 
   .mb-3
     = form.label :pricing_url, class: 'form-label'
-    = form.text_field :pricing_url, class: 'form-control', 'aria-describedby': 'network_pricing_url_help'
+    = form.url_field :pricing_url, class: 'form-control', 'aria-describedby': 'network_pricing_url_help'
     .form-text#network_pricing_url_help Optional.
 
   .mb-3
     = form.label :android_app_url, class: 'form-label'
-    = form.text_field :android_app_url, class: 'form-control', 'aria-describedby': 'network_android_app_url_help'
+    = form.url_field :android_app_url, class: 'form-control', 'aria-describedby': 'network_android_app_url_help'
     .form-text#network_android_app_url_help e.g. <code>https://play.google.com/store/apps/details?id=com.ubitricity</code>. Optional.
 
   .mb-3
     = form.label :ios_app_url, class: 'form-label'
-    = form.text_field :ios_app_url, class: 'form-control', 'aria-describedby': 'network_ios_app_url_help'
+    = form.url_field :ios_app_url, class: 'form-control', 'aria-describedby': 'network_ios_app_url_help'
     .form-text#network_ios_app_url_help e.g. <code>https://apps.apple.com/gb/app/ubitricity/id1031238194</code>. Optional.
 
   .mb-3
     = form.label :country_id, class: 'form-label'
-    = form.collection_select :country_id, Country.all, :id, :name, { prompt: true }, { class: "form-select" }
+    = form.collection_select :country_id, Country.all, :id, :name, { prompt: true }, { required: true, class: "form-select" }
 
   .mb-3
     = form.submit class: 'btn btn-primary'

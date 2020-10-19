@@ -47,13 +47,13 @@ en:
         other: Pay-as-you-go Plans
     attributes:
       country:
-        name: Country
-        countryCode: Country code
+        countryCode: Country Code
       network:
-        name: Name
-        description: Description
-        slug: Slug
         website_url: Website URL
         pricing_url: Pricing URL
         android_app_url: Android App URL
         ios_app_url: iOS App URL
+      payg_plan:
+        plan_url: Plan URL
+        started_at: Started
+        ended_at: Ended

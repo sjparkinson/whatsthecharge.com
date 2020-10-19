@@ -30,4 +30,11 @@ class PaygPlanTest < ActiveSupport::TestCase
     assert_not payg_plan.valid?
     assert_includes payg_plan.errors.keys, :network
   end
+
+  test "should convert blank :plan_url to nil" do
+    payg_plan = PaygPlan.new(plan_url: "")
+
+    payg_plan.valid?
+    assert_not_includes payg_plan.errors.keys, :plan_url
+  end
 end

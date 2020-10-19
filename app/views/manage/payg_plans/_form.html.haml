@@ -8,23 +8,30 @@
 
   .mb-3
     = form.label :name, class: 'form-label'
-    = form.text_field :name, class: 'form-control'
+    = form.text_field :name, required: true, class: 'form-control'
 
   .mb-3
     = form.label :description, class: 'form-label'
-    = form.text_area :description, class: 'form-control'
+    = form.text_area :description, required: true, class: 'form-control'
 
   .mb-3
     = form.label :network_id, class: 'form-label'
-    = form.collection_select :network_id, Network.all, :id, :name, { prompt: true }, { class: "form-select" }
+    = form.collection_select :network_id, Network.all, :id, :name, { prompt: true }, { required: true, class: "form-select" }
+
+  .mb-3
+    = form.label :plan_url, class: 'form-label'
+    = form.url_field :plan_url, class: 'form-control', 'aria-describedby': 'payg_plan_plan_url_help'
+    .form-text#payg_plan_plan_url_help Optional.
 
   .mb-3
     = form.label :started_at, class: 'form-label'
-    = form.date_field :started_at, class: 'form-control'
+    = form.date_field :started_at, class: 'form-control', 'aria-describedby': 'payg_plan_started_at_help'
+    .form-text#payg_plan_started_at_help When this pay-as-you-go plan became available. Optional.
 
   .mb-3
     = form.label :ended_at, class: 'form-label'
-    = form.date_field :ended_at, class: 'form-control'
+    = form.date_field :ended_at, class: 'form-control', 'aria-describedby': 'payg_plan_ended_at_help'
+    .form-text#payg_plan_ended_at_help When this pay-as-you-go plan stopped being available. Optional.
 
   .mb-3
     = form.submit class: 'btn btn-primary'
