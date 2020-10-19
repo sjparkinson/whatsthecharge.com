@@ -71,6 +71,13 @@ class NetworkTest < ActiveSupport::TestCase
     assert_not_includes network.errors.keys, :android_app_url
   end
 
+  test "should convert blank :android_app_url to nil" do
+    network = Network.new(android_app_url: "")
+
+    network.valid?
+    assert_not_includes network.errors.keys, :android_app_url
+  end
+
   test "should not save network with an invalid :ios_app_url" do
     network = Network.new(ios_app_url: "https://an-invalid-app-store-url.com")
 
@@ -80,6 +87,13 @@ class NetworkTest < ActiveSupport::TestCase
 
   test "should validate network with an valid :ios_app_url" do
     network = Network.new(ios_app_url: "https://apps.apple.com/gb/app/ubitricity/id1031238194")
+
+    network.valid?
+    assert_not_includes network.errors.keys, :ios_app_url
+  end
+
+  test "should convert blank :ios_app_url to nil" do
+    network = Network.new(ios_app_url: "")
 
     network.valid?
     assert_not_includes network.errors.keys, :ios_app_url

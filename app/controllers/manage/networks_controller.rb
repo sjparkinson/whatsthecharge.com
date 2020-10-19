@@ -1,14 +1,10 @@
 class Manage::NetworksController < Manage::ApplicationController
-  before_action :set_network, only: [:show, :edit, :update, :destroy]
+  before_action :set_network, only: [:edit, :update, :destroy]
 
   def index
     @networks = Network.all
 
     fresh_when @networks
-  end
-
-  def show
-    fresh_when @network
   end
 
   def new

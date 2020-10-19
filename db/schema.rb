@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_213200) do
+ActiveRecord::Schema.define(version: 2020_10_19_203256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 2020_10_18_213200) do
     t.money "price_per_minute", scale: 2, null: false, comment: "Cost per minute for this charging speed."
     t.string "price_per_minute_currency", null: false, comment: "ISO 4217 three character currency code."
     t.integer "supported_charging_speeds", comment: "Charging speeds supported by this rate in kWh, e.g. 7, 22, and 50.", array: true
-    t.datetime "begins_at", comment: "When this charging rate becomes available."
-    t.datetime "ends_at", comment: "When this charging rate becomes unavailable."
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "begins_at", precision: 6
+    t.datetime "ends_at", precision: 6
     t.index ["rateable_type", "rateable_id"], name: "index_charging_rates_on_rateable_type_and_rateable_id"
     t.index ["supported_charging_speeds"], name: "index_charging_rates_on_supported_charging_speeds", using: :gin
   end
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2020_10_18_213200) do
     t.uuid "network_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "started_at", precision: 6
+    t.datetime "ended_at", precision: 6
     t.index ["network_id"], name: "index_membership_plans_on_network_id"
   end
 
@@ -76,6 +78,8 @@ ActiveRecord::Schema.define(version: 2020_10_18_213200) do
     t.uuid "network_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "started_at", precision: 6
+    t.datetime "ended_at", precision: 6
     t.index ["network_id"], name: "index_payg_plans_on_network_id"
   end
 

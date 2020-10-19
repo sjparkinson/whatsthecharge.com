@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   get '/manage', to: redirect('/manage/countries')
 
   namespace :manage do
-    resources :countries, only: [:index, :create, :new, :edit, :update]
-    resources :networks
+    resources :countries, only: [:index, :new, :edit, :create, :update]
+    resources :networks, only: [:index, :new, :edit, :create, :update, :destroy]
 
     resources :payg_plans, :membership_plans do
       resources :charging_rates, shallow: true
