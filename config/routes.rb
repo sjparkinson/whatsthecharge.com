@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   end
 
   # Manage the records, add new networks, update prices, etc.
+  get '/manage', to: redirect('/manage/countries')
+
   namespace :manage do
     resources :countries, only: [:index, :create, :new, :edit, :update]
     resources :networks
