@@ -115,8 +115,6 @@ jobs:
       - name: Run docker login
         run: docker login docker.pkg.github.com --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
 
-      - run: docker pull docker.pkg.github.com/${{ github.repository }}/whatsthecharge.com:latest
-
       - name: Run pack build
         run: |
           pack build --builder heroku/buildpacks --buildpack heroku/ruby \
