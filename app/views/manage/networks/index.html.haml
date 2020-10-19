@@ -1,6 +1,6 @@
 = render 'nav'
 
-= page_heading "Networks"
+= page_heading Network.model_name.human(count: 2)
 
 .table-responsive
   %table.table
@@ -8,7 +8,7 @@
       %tr
         %th{scope: "col"} #
         %th{scope: "col"}= t :name, scope: [:activerecord, :attributes, :network]
-        %th{scope: "col"}= t :name, scope: [:activerecord, :attributes, :country]
+        %th{scope: "col"}= t :country, scope: [:activerecord, :attributes, :network]
         %th{scope: "col"}
 
     %tbody

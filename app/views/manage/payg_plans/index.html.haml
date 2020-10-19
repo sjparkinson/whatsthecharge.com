@@ -1,6 +1,6 @@
 = render 'nav'
 
-= page_heading "Pay-as-you-go Plans"
+= page_heading PaygPlan.model_name.human(count: @payg_plans.size)
 
 .table-responsive
   %table.table
@@ -8,7 +8,7 @@
       %tr
         %th{scope: "col"} #
         %th{scope: "col"}= t :name, scope: [:activerecord, :attributes, :payg_plan]
-        %th{scope: "col"}= t :name, scope: [:activerecord, :attributes, :network]
+        %th{scope: "col"}= t :network, scope: [:activerecord, :attributes, :payg_plan]
         %th{scope: "col"}= t :started_at, scope: [:activerecord, :attributes, :payg_plan]
         %th{scope: "col"}= t :ended_at, scope: [:activerecord, :attributes, :payg_plan]
         %th{scope: "col"}
@@ -25,4 +25,4 @@
             = link_to 'Update', edit_manage_payg_plan_path(payg_plan)
             = link_to 'Remove', manage_payg_plan_path(payg_plan), method: 'delete', class: 'link-danger', data: { confirm: "Are you sure?" }
 
-%p= link_to 'Add a Pay-as-you-go Plan', new_manage_payg_plan_path, class: "btn btn-primary"
+%p= link_to "Add a #{PaygPlan.model_name.human}", new_manage_payg_plan_path, class: "btn btn-primary"

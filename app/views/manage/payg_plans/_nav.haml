@@ -1,5 +1,4 @@
 %nav.nav.nav-pills.mb-3
-  = link_to "Countries", manage_countries_path, class: "nav-link"
-  = link_to "Networks", manage_networks_path, class: "nav-link"
-  = link_to "Pay-as-you-go Plans", manage_payg_plans_path, class: "nav-link active", 'aria-current': "page"
-  = link_to "Membership Plans", manage_membership_plans_path, class: "nav-link"
+  = link_to Country.model_name.human(count: 2), manage_countries_path, class: "nav-link"
+  = link_to Network.model_name.human(count: 2), manage_networks_path, class: "nav-link"
+  = link_to PaygPlan.model_name.human(count: 2), manage_payg_plans_path, class: "nav-link active", 'aria-current': "page"

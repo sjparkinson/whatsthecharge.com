@@ -35,6 +35,16 @@ en:
       create: "Add a %{model}"
       update: "Confirm changes"
   activerecord:
+    models:
+      country:
+        one: Country
+        other: Countries
+      network:
+        one: Network
+        other: Networks
+      payg_plan:
+        one: Pay-as-you-go Plan
+        other: Pay-as-you-go Plans
     attributes:
       country:
         name: Country
