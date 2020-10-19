@@ -5,9 +5,6 @@ class Network < ApplicationRecord
   validates :website_url, presence: true
   validates :country, presence: true
 
-  validates :android_app_url, uniqueness: { case_sensitive: false }
-  validates :ios_app_url, uniqueness: { case_sensitive: false }
-
   belongs_to :country
   has_many :membership_plans
   has_many :payg_plans
