@@ -5,6 +5,9 @@ class Network < ApplicationRecord
   validates :website_url, presence: true
   validates :country, presence: true
 
+  validates :android_app_url, uniqueness: true
+  validates :ios_app_url, uniqueness: true
+
   belongs_to :country
   has_many :membership_plans
   has_many :payg_plans

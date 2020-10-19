@@ -49,6 +49,8 @@ class Manage::NetworksController < Manage::ApplicationController
   end
 
   def network_params
-    params.require(:network).permit(:name, :description, :slug, :website_url, :pricing_url, :country_id)
+    params.require(:network)
+      .permit(:name, :description, :slug, :website_url, :pricing_url,
+              :android_app_url, :ios_app_url, :country_id)
   end
 end
