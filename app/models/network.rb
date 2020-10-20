@@ -18,7 +18,7 @@ class Network < ApplicationRecord
                       message: 'must be a valid Google Play App URL',
                       allow_nil: true
   validates_format_of :ios_app_url,
-                      with: %r{\Ahttps:\/\/apps\.apple\.com\/gb\/app\/[^\/]+\/id\d+\z},
+                      with: %r{\Ahttps:\/\/apps\.apple\.com\/[^/]+\/app\/[^/]+\/id\d+\z},
                       message: 'must be a valid App Store App URL',
                       allow_nil: true
 

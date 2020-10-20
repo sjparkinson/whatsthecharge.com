@@ -93,13 +93,16 @@ class NetworkTest < ActiveSupport::TestCase
   end
 
   test 'should validate network with an valid :ios_app_url' do
-    network =
-      Network.new(
-        ios_app_url: 'https://apps.apple.com/gb/app/ubitricity/id1031238194'
-      )
+    [
+      "https://apps.apple.com/gb/app/ubitricity/id1031238194",
+      "https://apps.apple.com/be/app/shell-recharge/id549121633"
+    ].each do |url|
+      network = Network.new(ios_app_url: url)
 
-    network.valid?
-    assert_not_includes network.errors.keys, :ios_app_url
+      network.valid?
+
+      assert_not_includes network.errors.keys, :ios_app_url
+    end
   end
 
   test 'should convert blank :ios_app_url to nil' do
