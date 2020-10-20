@@ -1,5 +1,5 @@
 class Manage::PaygPlansController < Manage::ApplicationController
-  before_action :set_payg_plan, only: [:show, :edit, :update, :destroy]
+  before_action :set_payg_plan, only: %i[show edit update destroy]
 
   def index
     @payg_plans = PaygPlan.all
@@ -49,6 +49,13 @@ class Manage::PaygPlansController < Manage::ApplicationController
   end
 
   def payg_plans_params
-    params.require(:payg_plan).permit(:name, :description, :network_id, :plan_url, :started_at, :ended_at)
+    params.require(:payg_plan).permit(
+      :name,
+      :description,
+      :network_id,
+      :plan_url,
+      :started_at,
+      :ended_at
+    )
   end
 end

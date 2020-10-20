@@ -33,6 +33,8 @@ gem 'lograge', '~> 0.11'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '~> 1.4', require: false
 
+gem 'rails-i18n', '~> 6.0.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -50,6 +52,7 @@ group :development do
   # Code linting and formatting
   gem "rubocop", "~> 0.93"
   gem "reek", "~> 6.0"
+  gem "prettier", "~> 0.20", ">= 0.20.1"
 
   # Load environment variables from a .env file
   gem 'dotenv-rails', '~> 2.7'

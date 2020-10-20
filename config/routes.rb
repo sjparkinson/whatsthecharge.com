@@ -10,15 +10,15 @@ Rails.application.routes.draw do
   get '/uk', to: 'index#uk', as: 'uk'
 
   scope ':countryCode', countryCode: /uk/ do
-    resources :networks, param: :slug, only: [:index]
+    resources :networks, param: :slug, only: %i[index]
   end
 
   # Manage the records, add new networks, update prices, etc.
   get '/manage', to: redirect('/manage/countries')
 
   namespace :manage do
-    resources :countries, only: [:index, :new, :edit, :create, :update]
-    resources :networks, only: [:index, :new, :edit, :create, :update, :destroy]
+    resources :countries, only: %i[index new edit create update]
+    resources :networks, only: %i[index new edit create update destroy]
 
     resources :payg_plans, :membership_plans do
       resources :charging_rates, shallow: true

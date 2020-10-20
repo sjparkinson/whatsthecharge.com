@@ -19,8 +19,8 @@
           %td= index + 1
           %td= payg_plan.name
           %td= payg_plan.network.name
-          %td= payg_plan.started_at
-          %td= payg_plan.ended_at
+          %td= l payg_plan.started_at.to_date if payg_plan.started_at.present?
+          %td= l payg_plan.ended_at.to_date if payg_plan.ended_at.present?
           %td.text-right
             = link_to 'Update', edit_manage_payg_plan_path(payg_plan)
             = link_to 'Remove', manage_payg_plan_path(payg_plan), method: 'delete', class: 'link-danger', data: { confirm: "Are you sure?" }

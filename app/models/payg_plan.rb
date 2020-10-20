@@ -2,6 +2,7 @@ class PaygPlan < ApplicationRecord
   validates_presence_of :name
   validates_presence_of :description
   validates_presence_of :network
+  validates_presence_of :started_at
 
   validates_uniqueness_of :plan_url, allow_nil: true
 

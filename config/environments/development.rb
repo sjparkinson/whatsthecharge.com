@@ -53,7 +53,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Add GitHub Codespaces urls in development
-  config.hosts << ".apps.codespaces.githubusercontent.com"
+  config.hosts << '.apps.codespaces.githubusercontent.com'
 
   config.action_controller.default_protect_from_forgery = false
 end

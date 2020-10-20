@@ -1,5 +1,5 @@
 class Manage::CountriesController < Manage::ApplicationController
-  before_action :set_country, only: [:edit, :update]
+  before_action :set_country, only: %i[edit update]
 
   def index
     @countries = Country.all.select(:id, :name, :countryCode)

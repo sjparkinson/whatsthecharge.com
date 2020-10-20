@@ -43,6 +43,12 @@
             "type": "shell",
             "command": "source /usr/local/rvm/scripts/rvm; rvm use; bundle exec rails server",
             "problemMatcher": []
+        },
+        {
+            "label": "Format Ruby",
+            "type": "shell",
+            "command": "source /usr/local/rvm/scripts/rvm; rvm use; bundle exec rbprettier --write '**/*.rb'",
+            "problemMatcher": []
         }
     ]
 }

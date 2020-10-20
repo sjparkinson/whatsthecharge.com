@@ -1,6 +1,9 @@
 class CreatePaygPlans < ActiveRecord::Migration[6.0]
   def change
-    create_table :payg_plans, id: :uuid, comment: 'Network pay-as-you-go plans, e.g. Polar Instant.' do |t|
+    create_table :payg_plans,
+                 id: :uuid,
+                 comment:
+                   'Network pay-as-you-go plans, e.g. Polar Instant.' do |t|
       t.string :name
       t.text :description
 

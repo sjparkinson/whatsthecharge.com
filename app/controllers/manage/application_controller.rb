@@ -3,7 +3,10 @@ class Manage::ApplicationController < ApplicationController
 
   private
 
+  # Only allow specifc IP addresses to access /manage
   def verify_ip_address
-    render plain: "Unauthorized", status: :unauthorized if request.remote_ip != "94.174.58.253"
+    if request.remote_ip != '94.174.58.253'
+      render plain: 'Unauthorized', status: :unauthorized
+    end
   end
 end
