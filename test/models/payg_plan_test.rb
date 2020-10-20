@@ -6,7 +6,6 @@ class PaygPlanTest < ActiveSupport::TestCase
     payg_plan.name = 'DirectAccess'
     payg_plan.description = 'Some amazing description...'
     payg_plan.network = networks(:polar_instant)
-    payg_plan.started_at = DateTime.new
 
     assert payg_plan.valid?
   end
@@ -39,12 +38,5 @@ class PaygPlanTest < ActiveSupport::TestCase
 
     assert_nil payg_plan.plan_url
     assert_not_includes payg_plan.errors.keys, :plan_url
-  end
-
-  test 'should not save without :started_at' do
-    payg_plan = PaygPlan.new(started_at: nil)
-
-    assert_not payg_plan.valid?
-    assert_includes payg_plan.errors.keys, :started_at
   end
 end

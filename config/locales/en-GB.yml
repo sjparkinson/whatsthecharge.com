@@ -55,5 +55,4 @@ en-GB:
         ios_app_url: iOS App URL
       payg_plan:
         plan_url: Plan URL
-        started_at: Started
         ended_at: Ended

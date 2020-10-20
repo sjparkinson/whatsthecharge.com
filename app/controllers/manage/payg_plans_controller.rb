@@ -54,7 +54,6 @@ class Manage::PaygPlansController < Manage::ApplicationController
       :description,
       :network_id,
       :plan_url,
-      :started_at,
       :ended_at
     )
   end
