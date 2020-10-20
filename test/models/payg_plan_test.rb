@@ -1,11 +1,12 @@
 require 'test_helper'
 
 class PaygPlanTest < ActiveSupport::TestCase
-  test 'should save a valid pay-as-you-go plan' do
+  test 'should save a valid pay as you go plan' do
     payg_plan = PaygPlan.new
     payg_plan.name = 'DirectAccess'
     payg_plan.description = 'Some amazing description...'
     payg_plan.network = networks(:polar_instant)
+    payg_plan.started_at = DateTime.new
 
     assert payg_plan.valid?
   end

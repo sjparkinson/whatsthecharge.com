@@ -43,8 +43,8 @@ en-GB:
         one: Network
         other: Networks
       payg_plan:
-        one: Pay-as-you-go Plan
-        other: Pay-as-you-go Plans
+        one: Pay As You Go Plan
+        other: Pay As You Go Plans
     attributes:
       country:
         countryCode: Country Code

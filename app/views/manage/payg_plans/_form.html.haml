@@ -26,12 +26,12 @@
   .mb-3
     = form.label :started_at, class: 'form-label'
     = form.date_field :started_at, required: true, class: 'form-control', 'aria-describedby': 'payg_plan_started_at_help'
-    .form-text#payg_plan_started_at_help When this pay-as-you-go plan became available.
+    .form-text#payg_plan_started_at_help When this pay as you go plan became available.
 
   .mb-3
     = form.label :ended_at, class: 'form-label'
     = form.date_field :ended_at, class: 'form-control', 'aria-describedby': 'payg_plan_ended_at_help'
-    .form-text#payg_plan_ended_at_help When this pay-as-you-go plan stopped being available. Optional.
+    .form-text#payg_plan_ended_at_help When this pay as you go plan stopped being available. Optional.
 
   .mb-3
     = form.submit class: 'btn btn-primary'

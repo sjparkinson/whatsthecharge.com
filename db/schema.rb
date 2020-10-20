@@ -11,122 +11,81 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_10_19_222303) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'pgcrypto'
-  enable_extension 'plpgsql'
+  enable_extension "pgcrypto"
+  enable_extension "plpgsql"
 
-  create_table 'charging_rates',
-               id: :uuid,
-               default: -> { 'gen_random_uuid()' },
-               comment:
-                 'Costs by charging speed for membership and pay-as-you-go plans.',
-               force: :cascade do |t|
-    t.string 'rateable_type'
-    t.uuid 'rateable_id'
-    t.text 'description'
-    t.money 'price_per_kwh',
-            scale: 2,
-            null: false,
-            comment: 'Cost per kWh for this charging speed.'
-    t.string 'price_per_kwh_currency',
-             null: false, comment: 'ISO 4217 three character currency code.'
-    t.money 'price_per_minute',
-            scale: 2,
-            null: false,
-            comment: 'Cost per minute for this charging speed.'
-    t.string 'price_per_minute_currency',
-             null: false, comment: 'ISO 4217 three character currency code.'
-    t.integer 'supported_charging_speeds',
-              comment:
-                'Charging speeds supported by this rate in kWh, e.g. 7, 22, and 50.',
-              array: true
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.datetime 'begins_at', precision: 6
-    t.datetime 'ends_at', precision: 6
-    t.index %w[rateable_type rateable_id],
-            name: 'index_charging_rates_on_rateable_type_and_rateable_id'
-    t.index %w[supported_charging_speeds],
-            name: 'index_charging_rates_on_supported_charging_speeds',
-            using: :gin
+  create_table "charging_rates", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Costs by charging speed for membership and pay-as-you-go plans.", force: :cascade do |t|
+    t.string "rateable_type"
+    t.uuid "rateable_id"
+    t.text "description"
+    t.money "price_per_kwh", scale: 2, null: false, comment: "Cost per kWh for this charging speed."
+    t.string "price_per_kwh_currency", null: false, comment: "ISO 4217 three character currency code."
+    t.money "price_per_minute", scale: 2, null: false, comment: "Cost per minute for this charging speed."
+    t.string "price_per_minute_currency", null: false, comment: "ISO 4217 three character currency code."
+    t.integer "supported_charging_speeds", comment: "Charging speeds supported by this rate in kWh, e.g. 7, 22, and 50.", array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "begins_at", precision: 6
+    t.datetime "ends_at", precision: 6
+    t.index ["rateable_type", "rateable_id"], name: "index_charging_rates_on_rateable_type_and_rateable_id"
+    t.index ["supported_charging_speeds"], name: "index_charging_rates_on_supported_charging_speeds", using: :gin
   end
 
-  create_table 'countries',
-               id: :uuid,
-               default: -> { 'gen_random_uuid()' },
-               comment: 'Supported countries.',
-               force: :cascade do |t|
-    t.string 'name', null: false
-    t.string 'countryCode', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index %w[countryCode],
-            name: 'index_countries_on_countryCode', unique: true
+  create_table "countries", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Supported countries.", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "countryCode", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["countryCode"], name: "index_countries_on_countryCode", unique: true
   end
 
-  create_table 'membership_plans',
-               id: :uuid,
-               default: -> { 'gen_random_uuid()' },
-               comment:
-                 "Network memberships, e.g. Source London's Full membership.",
-               force: :cascade do |t|
-    t.string 'name', null: false
-    t.text 'description'
-    t.money 'price_one_off',
-            scale: 2,
-            comment:
-              "One-off cost to become a member, e.g. Source London's Flexi membership."
-    t.string 'price_one_off_currency',
-             null: false, comment: 'ISO 4217 three character currency code.'
-    t.money 'price_per_month', scale: 2
-    t.string 'price_per_month_currency',
-             null: false, comment: 'ISO 4217 three character currency code.'
-    t.uuid 'network_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.datetime 'started_at', precision: 6
-    t.datetime 'ended_at', precision: 6
-    t.string 'plan_url'
-    t.index %w[network_id], name: 'index_membership_plans_on_network_id'
+  create_table "membership_plans", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Network memberships, e.g. Source London's Full membership.", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.money "price_one_off", scale: 2, comment: "One-off cost to become a member, e.g. Source London's Flexi membership."
+    t.string "price_one_off_currency", null: false, comment: "ISO 4217 three character currency code."
+    t.money "price_per_month", scale: 2
+    t.string "price_per_month_currency", null: false, comment: "ISO 4217 three character currency code."
+    t.uuid "network_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "started_at", precision: 6
+    t.datetime "ended_at", precision: 6
+    t.string "plan_url"
+    t.index ["network_id"], name: "index_membership_plans_on_network_id"
   end
 
-  create_table 'networks',
-               id: :uuid,
-               default: -> { 'gen_random_uuid()' },
-               force: :cascade do |t|
-    t.string 'name', null: false
-    t.text 'description'
-    t.string 'slug', null: false
-    t.string 'website_url', null: false
-    t.string 'pricing_url'
-    t.uuid 'country_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.string 'android_app_url'
-    t.string 'ios_app_url'
-    t.index %w[country_id], name: 'index_networks_on_country_id'
-    t.index %w[slug country_id],
-            name: 'index_networks_on_slug_and_country_id', unique: true
-    t.index %w[slug], name: 'index_networks_on_slug'
+  create_table "networks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "slug", null: false
+    t.string "website_url", null: false
+    t.string "pricing_url"
+    t.uuid "country_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "android_app_url"
+    t.string "ios_app_url"
+    t.index ["country_id"], name: "index_networks_on_country_id"
+    t.index ["slug", "country_id"], name: "index_networks_on_slug_and_country_id", unique: true
+    t.index ["slug"], name: "index_networks_on_slug"
   end
 
-  create_table 'payg_plans',
-               id: :uuid,
-               default: -> { 'gen_random_uuid()' },
-               comment: 'Network pay-as-you-go plans, e.g. Polar Instant.',
-               force: :cascade do |t|
-    t.string 'name'
-    t.text 'description'
-    t.uuid 'network_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.datetime 'started_at', precision: 6
-    t.datetime 'ended_at', precision: 6
-    t.string 'plan_url'
-    t.index %w[network_id], name: 'index_payg_plans_on_network_id'
+  create_table "payg_plans", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Network pay-as-you-go plans, e.g. Polar Instant.", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.uuid "network_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "started_at", precision: 6
+    t.datetime "ended_at", precision: 6
+    t.string "plan_url"
+    t.index ["network_id"], name: "index_payg_plans_on_network_id"
   end
 
-  add_foreign_key 'membership_plans', 'networks'
-  add_foreign_key 'networks', 'countries'
-  add_foreign_key 'payg_plans', 'networks'
+  add_foreign_key "membership_plans", "networks"
+  add_foreign_key "networks", "countries"
+  add_foreign_key "payg_plans", "networks"
 end

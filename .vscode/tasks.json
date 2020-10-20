@@ -47,7 +47,7 @@
         {
             "label": "Format Ruby",
             "type": "shell",
-            "command": "source /usr/local/rvm/scripts/rvm; rvm use; bundle exec rbprettier --write '**/*.rb'",
+            "command": "source /usr/local/rvm/scripts/rvm; rvm use; bundle exec rbprettier --write '{app,test,lib}/**/*.rb'",
             "problemMatcher": []
         }
     ]
