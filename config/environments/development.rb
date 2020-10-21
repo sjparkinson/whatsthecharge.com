@@ -51,9 +51,4 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
-  # Clear hosts to work with GitHub Codespaces urls in development
-  config.hosts.clear
-
-  config.action_controller.default_protect_from_forgery = false
 end
