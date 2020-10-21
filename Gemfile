@@ -25,7 +25,7 @@ gem 'webpacker', '~> 4.3'
 gem 'jbuilder', '~> 2.10'
 
 # Use Active Model has_secure_password
-gem 'bcrypt', '~> 3.1'
+gem 'bcrypt', '~> 3.1', '>= 3.1.16'
 
 # Use lograge to format production logs
 gem 'lograge', '~> 0.11'
@@ -65,4 +65,7 @@ group :test do
 
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers', '~> 4.4'
+
+  # Adds `assigns` and `assert_template` to integration tests.
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
 end

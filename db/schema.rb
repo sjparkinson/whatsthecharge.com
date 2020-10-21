@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_20_150510) do
+ActiveRecord::Schema.define(version: 2020_10_21_090108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -81,6 +81,14 @@ ActiveRecord::Schema.define(version: 2020_10_20_150510) do
     t.datetime "ended_at", precision: 6
     t.string "plan_url"
     t.index ["network_id"], name: "index_payg_plans_on_network_id"
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "membership_plans", "networks"

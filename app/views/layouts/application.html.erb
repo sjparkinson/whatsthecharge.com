@@ -26,12 +26,24 @@
             <%= link_to "Charging networks", networks_path(countryCode: 'uk'), class: "nav-link" %>
           </li>
         </ul>
+        <% if logged_in? -%>
+        <div class="navbar-nav">
+            <%= link_to "Logout", logout_path, method: :delete, class: "nav-link" %>
+        </div>
+        <%- end %>
+        </div>
       </div>
     </nav>
 
     <main id="content" role="main" class="container">
         <%= yield %>
     </main>
+
+    <% if Rails.env.development? -%>
+    <div class="container border rounded mt-5 pt-3">
+        <%= debug(params) %>
+    </div>
+    <%- end %>
 
     <%= javascript_pack_tag "application" %>
   </body>

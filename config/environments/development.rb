@@ -52,8 +52,8 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  # Add GitHub Codespaces urls in development
-  config.hosts << '.apps.codespaces.githubusercontent.com'
+  # Clear hosts to work with GitHub Codespaces urls in development
+  config.hosts.clear
 
   config.action_controller.default_protect_from_forgery = false
 end
