@@ -23,6 +23,6 @@ class Network < ApplicationRecord
                       allow_nil: true
 
   belongs_to :country
-  has_many :membership_plans
-  has_many :payg_plans
+  has_many :membership_plans, dependent: :destroy
+  has_many :payg_plans, dependent: :destroy
 end
