@@ -1,6 +1,5 @@
 # Application wide view helpers.
-module ApplicationHelper
-  # Set the page title in <head>
+module ApplicationHelper # Set the page title in <head>
   def page_title(separator = ' &middot; ')
     [content_for(:title), 'What\'s the charge?'].compact.join(separator)
       .html_safe

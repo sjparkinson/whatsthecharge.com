@@ -1,2 +1,1 @@
-module NetworksHelper
-end
+module NetworksHelper; end

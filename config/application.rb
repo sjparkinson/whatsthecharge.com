@@ -27,5 +27,8 @@ module WhatsthechargeCom
 
     config.i18n.available_locales = 'en-GB'
     config.i18n.default_locale = 'en-GB'
+
+    # Handle errors using routes.rb
+    config.exceptions_app = self.routes
   end
 end

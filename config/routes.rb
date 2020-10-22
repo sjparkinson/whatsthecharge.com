@@ -25,7 +25,11 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  get 'login', to: 'manage/sessions#new'
+  post 'login', to: 'manage/sessions#create'
+  delete 'logout', to: 'manage/sessions#destroy'
+
+  get '404', to: 'errors#not_found'
+  get '422', to: 'errors#unprocessable_entity'
+  get '500', to: 'errors#internal_server_error'
 end

@@ -1,2 +1,1 @@
-module IndexHelper
-end
+module IndexHelper; end
