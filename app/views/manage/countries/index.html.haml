@@ -11,6 +11,7 @@
         %th{scope: "col"}= t :countryCode, scope: [:activerecord, :attributes, :country]
         %th{scope: "col"}= "Number of #{Network.model_name.human(count: 2)}"
         %th{scope: "col"}
+          .visually-hidden Links
 
     %tbody
       - @countries.each_with_index do |country, index|

@@ -1,4 +1,6 @@
 class ErrorsController < ApplicationController
+  skip_before_action :set_country
+
   def not_found
     respond_to { |format| format.html { render status: 404 } }
   end

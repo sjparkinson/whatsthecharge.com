@@ -10,6 +10,7 @@
         %th{scope: "col"}= t :name, scope: [:activerecord, :attributes, :network]
         %th{scope: "col"}= t :country, scope: [:activerecord, :attributes, :network]
         %th{scope: "col"}
+          .visually-hidden Links
 
     %tbody
       - @networks.each_with_index do |network, index|

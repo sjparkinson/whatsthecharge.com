@@ -1,10 +1,10 @@
 # Controller to handle requests to the root of the application.
-class IndexController < ApplicationController # A country param will be added to root_url by ApplicationController#default_url_options.
-  def root
-    redirect_to uk_path
-  end
+class IndexController < ApplicationController
+  skip_before_action :set_country
 
-  def uk; end
+  def root
+    redirect_to networks_path
+  end
 
   def healthz
     render plain: 'OK'

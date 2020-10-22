@@ -11,6 +11,7 @@
         %th{scope: "col"}= t :network, scope: [:activerecord, :attributes, :payg_plan]
         %th{scope: "col"}= t :ended_at, scope: [:activerecord, :attributes, :payg_plan]
         %th{scope: "col"}
+          .visually-hidden Links
 
     %tbody
       - @payg_plans.each_with_index do |payg_plan, index|

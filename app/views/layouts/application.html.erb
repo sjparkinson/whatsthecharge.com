@@ -20,19 +20,32 @@
   <body>
     <a id="skip-to-content" class="visually-hidden-focusable bg-info text-body" href="#content">Skip to main content</a>
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
       <div class="container-fluid">
         <%= link_to "What's the charge?", root_path, class: "navbar-brand" %>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <%= link_to "Charging networks", networks_path(countryCode: 'uk'), class: "nav-link" %>
-          </li>
-        </ul>
-        <% if logged_in? -%>
-        <div class="navbar-nav">
-            <%= link_to "Logout", logout_path, method: :delete, class: "nav-link" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <%= link_to "Charging networks", networks_path(countryCode: 'uk'), class: "nav-link" %>
+                </li>
+            </ul>
+            <% if @country.present? %>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="country-dropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                        <%= @country.name %>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="country-dropdown">
+                        <li><h6 class="dropdown-header">Select a country</h6></li>
+                        <li><a class="dropdown-item disabled" href="#">Coming soon</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <% end %>
         </div>
-        <%- end %>
         </div>
       </div>
     </nav>
@@ -42,7 +55,7 @@
     </main>
 
     <% if Rails.env.development? -%>
-    <div class="container border rounded mt-5 pt-3">
+    <div class="container border rounded mt-5 mb-3 pt-3">
         <%= debug(params) %>
     </div>
     <%- end %>
