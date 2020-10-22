@@ -10,22 +10,27 @@ Rails.application.config.content_security_policy do |policy|
   policy.img_src :self, :https, :data
   policy.object_src :none
   policy.script_src :self, :https
-  policy.style_src :self, :https # policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
+  policy.style_src :self, :https
+  policy.frame_ancestors :none
+  # policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
 
   # Specify URI for violation reports
   # policy.report_uri "/csp-violation-report-endpoint"
 end
 
+# Remove the default x-frames-options header as we are using a CSP frame-ancestors directive.
+Rails.application.config.action_dispatch.default_headers.delete("X-Frame-Options")
+
 # If you are using UJS then enable automatic nonce generation
-Rails.application
-  .config.content_security_policy_nonce_generator = lambda do |request|
-  SecureRandom.base64(16)
-end
+# Rails.application
+#   .config.content_security_policy_nonce_generator = lambda do |request|
+#   SecureRandom.base64(16)
+# end
 
 # Set the nonce only to specific directives
-Rails.application.config.content_security_policy_nonce_directives = %w[
-  script-src
-]
+# Rails.application.config.content_security_policy_nonce_directives = %w[
+#   script-src
+# ]
 
 # Report CSP violations to a specified URI
 # For further information see the following documentation:
