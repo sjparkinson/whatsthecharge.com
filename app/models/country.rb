@@ -9,5 +9,5 @@ class Country < ApplicationRecord
 
   validates_uniqueness_of :countryCode, case_sensitive: false
 
-  has_many :networks
+  has_many :networks, dependent: :restrict_with_error
 end

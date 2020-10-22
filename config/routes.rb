@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/manage', to: redirect('/manage/countries')
 
   namespace :manage do
-    resources :countries, only: %i[index new edit create update]
+    resources :countries, only: %i[index new edit create update destroy]
     resources :networks, only: %i[index new edit create update destroy]
 
     resources :payg_plans, :membership_plans do

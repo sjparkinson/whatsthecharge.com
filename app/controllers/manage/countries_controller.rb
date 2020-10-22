@@ -1,5 +1,5 @@
 class Manage::CountriesController < Manage::ApplicationController
-  before_action :set_country, only: %i[edit update]
+  before_action :set_country, only: %i[edit update destroy]
 
   def index
     @countries = Country.all.select(:id, :name, :countryCode)
@@ -30,6 +30,14 @@ class Manage::CountriesController < Manage::ApplicationController
       redirect_to manage_countries_path
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @country.destroy
+      redirect_to manage_countries_path
+    else
+      head :bad_request
     end
   end
 
