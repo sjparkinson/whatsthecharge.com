@@ -1,10 +1,10 @@
-class Manage::NetworksController < Manage::ApplicationController
+class Manage::NetworksController < ApplicationController
+  before_action :authorized
+  before_action :add_x_robots_tag
   before_action :set_network, only: %i[edit update destroy]
 
   def index
     @networks = Network.all
-
-    fresh_when @networks
   end
 
   def new
@@ -22,7 +22,6 @@ class Manage::NetworksController < Manage::ApplicationController
   end
 
   def edit
-    fresh_when @network
   end
 
   def update

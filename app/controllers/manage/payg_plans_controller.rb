@@ -1,14 +1,10 @@
-class Manage::PaygPlansController < Manage::ApplicationController
-  before_action :set_payg_plan, only: %i[show edit update destroy]
+class Manage::PaygPlansController < ApplicationController
+  before_action :authorized
+  before_action :add_x_robots_tag
+  before_action :set_payg_plan, only: %i[edit update destroy]
 
   def index
     @payg_plans = PaygPlan.all
-
-    fresh_when @payg_plans
-  end
-
-  def show
-    fresh_when @payg_plan
   end
 
   def new
@@ -26,7 +22,6 @@ class Manage::PaygPlansController < Manage::ApplicationController
   end
 
   def edit
-    fresh_when @payg_plan
   end
 
   def update

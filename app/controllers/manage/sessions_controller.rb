@@ -1,5 +1,5 @@
-class Manage::SessionsController < Manage::ApplicationController
-  skip_before_action :authorized
+class Manage::SessionsController < ApplicationController
+  before_action :authorized
 
   def new
     redirect_to manage_path if logged_in?

@@ -1,10 +1,10 @@
-class Manage::CountriesController < Manage::ApplicationController
+class Manage::CountriesController < ApplicationController
+  before_action :authorized
+  before_action :add_x_robots_tag
   before_action :set_country, only: %i[edit update destroy]
 
   def index
     @countries = Country.all.select(:id, :name, :countryCode)
-
-    fresh_when @countries
   end
 
   def new
@@ -22,7 +22,6 @@ class Manage::CountriesController < Manage::ApplicationController
   end
 
   def edit
-    fresh_when @country
   end
 
   def update

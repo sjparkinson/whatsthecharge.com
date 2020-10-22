@@ -1,3 +1,5 @@
+require 'country_constraints'
+
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
   # Redirect to a country from the actual root path
   root to: 'index#root'
 
-  scope ':countryCode', countryCode: /uk/, defaults: { countryCode: 'uk' } do
+  scope ':countryCode', countryCode: /[a-z]{2}/, constraints: CountryConstraints.new, defaults: { countryCode: 'uk' } do
     resources :networks, param: :slug, only: %i[index]
   end
 
