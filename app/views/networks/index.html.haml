@@ -9,4 +9,4 @@
         .card-body
           %h5.card-title= network.name
           %p.card-text= network.description.truncate_words(25)
-          = link_to "Go to the #{network.name} website", network.website_url
+          = link_to "Go to the #{network.name} website", network.website_url, class: 'stretched-link'
