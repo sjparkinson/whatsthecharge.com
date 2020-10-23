@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # Redirect to a country from the actual root path
   root to: 'index#root'
 
-  scope ':countryCode', countryCode: /[a-z]{2}/, constraints: CountryConstraints.new, defaults: { countryCode: 'uk' } do
+  scope ':countryCode', countryCode: /[a-z]{2}/, constraints: CountryConstraints.new, defaults: { countryCode: 'gb' } do
     resources :networks, param: :slug, only: %i[index]
   end
 
