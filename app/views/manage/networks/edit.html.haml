@@ -1,5 +1,5 @@
 = render 'nav'
 
-= page_heading "Update #{@network.name}"
+= page_heading "Update #{Network.model_name.human}"
 
 = render 'form', network: @network

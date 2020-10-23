@@ -1,5 +1,5 @@
 = render 'nav'
 
-= page_heading "Update #{@payg_plan.name}"
+= page_heading "Update #{PaygPlan.model_name.human}"
 
 = render 'form', payg_plan: @payg_plan

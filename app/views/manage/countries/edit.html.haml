@@ -1,5 +1,5 @@
 = render 'nav'
 
-= page_heading "Update #{@country.name}"
+= page_heading "Update #{Country.model_name.human}"
 
 = render 'form', country: @country

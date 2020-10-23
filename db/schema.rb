@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_090108) do
+ActiveRecord::Schema.define(version: 2020_10_23_111944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -44,15 +44,15 @@ ActiveRecord::Schema.define(version: 2020_10_21_090108) do
   create_table "membership_plans", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Network memberships, e.g. Source London's Full membership.", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.money "price_one_off", scale: 2, comment: "One-off cost to become a member, e.g. Source London's Flexi membership."
-    t.string "price_one_off_currency", null: false, comment: "ISO 4217 three character currency code."
-    t.money "price_per_month", scale: 2
-    t.string "price_per_month_currency", null: false, comment: "ISO 4217 three character currency code."
     t.uuid "network_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "ended_at", precision: 6
     t.string "plan_url"
+    t.money "cost", scale: 2, comment: "The recurring or one-off cost of this plan."
+    t.string "cost_currency", comment: "ISO 4217 three character currency code."
+    t.integer "cost_frequency", null: false, comment: "The cost frequency enum, e.g. none, annually, monthly, etc."
+    t.index ["cost_frequency"], name: "index_membership_plans_on_cost_frequency"
     t.index ["network_id"], name: "index_membership_plans_on_network_id"
   end
 

@@ -45,6 +45,9 @@ en-GB:
       payg_plan:
         one: Pay As You Go Plan
         other: Pay As You Go Plans
+      membership_plan:
+        one: Membership Plan
+        other: Membership Plans
     attributes:
       country:
         countryCode: Country Code
@@ -56,3 +59,15 @@ en-GB:
       payg_plan:
         plan_url: Plan URL
         ended_at: Ended
+      membership_plan:
+        plan_url: Plan URL
+        cost: Cost
+        cost_currency: Currency
+        ended_at: Ended
+        cost_frequency: Cost Frequency
+      membership_plan/cost_frequencies:
+        once: One-off
+        annually: Annually
+        quarterly: Quarterly
+        monthly: Monthly
+        weekly: Weekly

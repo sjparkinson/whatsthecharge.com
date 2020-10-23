@@ -6,4 +6,5 @@
 #   movies = Movie.create!([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create!(name: 'Luke', movie: movies.first)
 
-Country.create!(name: 'United Kingdom', countryCode: 'uk')
+# The default value for the countryCode route parameter.
+Country.create(name: 'Great Britain', countryCode: 'gb')

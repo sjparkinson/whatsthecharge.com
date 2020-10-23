@@ -1,0 +1,5 @@
+%nav.nav.nav-pills.mb-3
+  = link_to Country.model_name.human(count: 2), manage_countries_path, class: "nav-link #{'active' if controller_name == 'countries'}"
+  = link_to Network.model_name.human(count: 2), manage_networks_path, class: "nav-link #{'active' if controller_name == 'networks'}"
+  = link_to PaygPlan.model_name.human(count: 2), manage_payg_plans_path, class: "nav-link #{'active' if controller_name == 'payg_plans'}"
+  = link_to MembershipPlan.model_name.human(count: 2), manage_membership_plans_path, class: "nav-link #{'active' if controller_name == 'membership_plans'}"

@@ -1,0 +1,25 @@
+= render 'nav'
+
+= page_heading MembershipPlan.model_name.human(count: 2)
+
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"} #
+        %th{scope: "col"}= t :name, scope: [:activerecord, :attributes, :membership_plan]
+        %th{scope: "col"}= t :network, scope: [:activerecord, :attributes, :membership_plan]
+        %th{scope: "col"}
+          .visually-hidden Links
+
+    %tbody
+      - @membership_plans.each_with_index do |membership_plan, index|
+        %tr
+          %td= index + 1
+          %td= membership_plan.name
+          %td= membership_plan.network.name
+          %td.text-right
+            = link_to 'Update', edit_manage_membership_plan_path(membership_plan)
+            = link_to 'Remove', manage_membership_plan_path(membership_plan), method: 'delete', class: 'link-danger', data: { confirm: "Are you sure?" }
+
+%p= link_to "Add a #{MembershipPlan.model_name.human}", new_manage_membership_plan_path, class: "btn btn-primary"
