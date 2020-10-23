@@ -1,6 +1,4 @@
-class Manage::NetworksController < ApplicationController
-  before_action :authorized
-  before_action :add_x_robots_tag
+class Manage::NetworksController < Manage::ManageController
   before_action :set_network, only: %i[edit update destroy]
 
   def index

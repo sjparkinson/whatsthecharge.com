@@ -1,6 +1,4 @@
-class Manage::PaygPlansController < ApplicationController
-  before_action :authorized
-  before_action :add_x_robots_tag
+class Manage::PaygPlansController < Manage::ManageController
   before_action :set_payg_plan, only: %i[edit update destroy]
 
   def index
