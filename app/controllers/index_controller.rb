@@ -1,6 +1,6 @@
 # Controller to handle requests to the root of the application.
 class IndexController < ApplicationController
-  skip_before_action :set_current_country
+  skip_before_action :set_countries
 
   def root
     redirect_to networks_path
