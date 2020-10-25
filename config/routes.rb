@@ -19,10 +19,8 @@ Rails.application.routes.draw do
   namespace :manage do
     resources :countries
     resources :networks
-
-    resources :payg_plans, :membership_plans do
-      resources :charging_rates, shallow: true
-    end
+    resources :payg_plans
+    resources :membership_plans
   end
 
   get 'login', to: 'manage/sessions#new'

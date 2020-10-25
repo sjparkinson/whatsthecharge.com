@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_23_111944) do
+ActiveRecord::Schema.define(version: 2020_10_25_153035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 2020_10_23_111944) do
     t.string "rateable_type"
     t.uuid "rateable_id"
     t.text "description"
-    t.money "price_per_kwh", scale: 2, null: false, comment: "Cost per kWh for this charging speed."
-    t.string "price_per_kwh_currency", null: false, comment: "ISO 4217 three character currency code."
-    t.money "price_per_minute", scale: 2, null: false, comment: "Cost per minute for this charging speed."
-    t.string "price_per_minute_currency", null: false, comment: "ISO 4217 three character currency code."
+    t.money "price_per_kwh", scale: 2, comment: "Cost per kWh for this charging speed."
+    t.string "price_per_kwh_currency", comment: "ISO 4217 three character currency code."
+    t.money "price_per_minute", scale: 2, comment: "Cost per minute for this charging speed."
+    t.string "price_per_minute_currency", comment: "ISO 4217 three character currency code."
     t.integer "supported_charging_speeds", comment: "Charging speeds supported by this rate in kWh, e.g. 7, 22, and 50.", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

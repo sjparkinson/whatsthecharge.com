@@ -16,7 +16,7 @@
 
   .mb-3
     = form.label :network_id, class: 'form-label'
-    = form.collection_select :network_id, Network.all, :id, :name, { prompt: true }, { required: true, class: "form-select" }
+    = form.grouped_collection_select :network_id, Country.all, :networks, :name, :id, :name, { prompt: true }, { required: true, class: "form-select" }
 
   .mb-3
     = form.label :plan_url, class: 'form-label'

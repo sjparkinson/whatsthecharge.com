@@ -48,6 +48,9 @@ en-GB:
       membership_plan:
         one: Membership Plan
         other: Membership Plans
+      charging_rate:
+        one: Charging Rate
+        other: Charging Rates
     attributes:
       country:
         countryCode: Country Code
