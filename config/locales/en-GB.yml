@@ -74,3 +74,9 @@ en-GB:
         quarterly: Quarterly
         monthly: Monthly
         weekly: Weekly
+      charging_rate:
+        description: Description
+        price_per_kwh: Price per kWh
+        price_per_minute: Price per minute
+        supported_charging_speeds: Charging Speeds (in kW)
+        ended_at: Ended

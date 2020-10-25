@@ -16,7 +16,7 @@
       - @payg_plans.each_with_index do |payg_plan, index|
         %tr
           %td= index + 1
-          %td= payg_plan.name
+          %td= link_to payg_plan.name, manage_payg_plan_path(payg_plan)
           %td= payg_plan.network.name
           %td.text-right
             = link_to 'Update', edit_manage_payg_plan_path(payg_plan)

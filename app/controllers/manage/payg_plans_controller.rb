@@ -1,8 +1,11 @@
 class Manage::PaygPlansController < Manage::ManageController
-  before_action :set_payg_plan, only: %i[edit update destroy]
+  before_action :set_payg_plan, only: %i[show edit update destroy]
 
   def index
     @payg_plans = PaygPlan.all
+  end
+
+  def show
   end
 
   def new
