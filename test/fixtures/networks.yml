@@ -5,4 +5,11 @@ polar_instant:
   description: Foo bar
   slug: polar-instant
   website_url: https://polarinstant.com/
-  country: uk
+  country: gb
+
+polar_plus:
+  name: Polar Plus
+  description: Foo bar
+  slug: polar-plus
+  website_url: https://polar-network.com/
+  country: gb

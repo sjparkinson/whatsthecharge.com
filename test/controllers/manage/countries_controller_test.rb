@@ -25,19 +25,19 @@ class ManageCountriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get edit' do
-    get edit_manage_country_url(id: countries(:uk))
+    get edit_manage_country_url(id: countries(:gb))
     assert_response :success
   end
 
   test 'should edit country' do
-    get edit_manage_country_url(id: countries(:uk))
+    get edit_manage_country_url(id: countries(:gb))
     assert_response :success
 
-    patch manage_country_url(id: countries(:uk)),
+    patch manage_country_url(id: countries(:gb)),
           params: { country: { name: 'Great Britain', countryCode: 'gb' } }
     assert_redirected_to manage_countries_path
 
-    get edit_manage_country_url(id: countries(:uk))
+    get edit_manage_country_url(id: countries(:gb))
     assert_select 'form input#country_name[value=?]', 'Great Britain'
     assert_select 'form input#country_countryCode[value=?]', 'gb'
   end
@@ -53,7 +53,7 @@ class ManageCountriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not destroy country with networks' do
-    delete manage_country_url(id: countries(:uk))
+    delete manage_country_url(id: countries(:gb))
     assert_response :bad_request
   end
 end

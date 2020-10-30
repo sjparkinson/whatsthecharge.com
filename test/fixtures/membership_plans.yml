@@ -1,2 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+polar_plus:
+  name: Polar Plus
+  description: TBC
+  network: polar_plus
+  cost: 7.85
+  cost_currency: GBP
+  cost_frequency: monthly

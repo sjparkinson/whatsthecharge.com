@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ChargingRateTest < ActiveSupport::TestCase
   def setup
-    @plan = payg_plans(:polar_instant_payg)
+    @plan = payg_plans(:polar_instant)
 
     @charging_rate = ChargingRate.new(
       rateable: @plan,
@@ -48,5 +48,31 @@ class ChargingRateTest < ActiveSupport::TestCase
 
     assert old_charging_rate.valid?
     assert old_charging_rate.save
+  end
+
+  test 'should scope to a current charging rate on payg plans' do
+    plan = payg_plans(:polar_instant)
+
+    charging_rate = ChargingRate.create(
+      rateable: plan,
+      price_per_kwh: 0.39,
+      price_per_kwh_currency: 'GBP',
+      supported_charging_speeds: [7, 11, 22]
+    )
+
+    assert_equal charging_rate, plan.current_charging_rate
+  end
+
+  test 'should scope to a current charging rate on membership plans' do
+    plan = membership_plans(:polar_plus)
+
+    charging_rate = ChargingRate.create(
+      rateable: plan,
+      price_per_kwh: 0.39,
+      price_per_kwh_currency: 'GBP',
+      supported_charging_speeds: [7, 11, 22]
+    )
+
+    assert_equal charging_rate, plan.current_charging_rate
   end
 end

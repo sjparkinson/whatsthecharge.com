@@ -7,4 +7,5 @@ class MembershipPlan < ApplicationRecord
 
   belongs_to :network
   has_many :charging_rates, as: :rateable
+  has_one :current_charging_rate, -> { current }, class_name: ChargingRate.name, as: :rateable
 end

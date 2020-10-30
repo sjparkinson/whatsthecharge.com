@@ -7,7 +7,7 @@ class NetworkTest < ActiveSupport::TestCase
     network.description = 'Some amazing description...'
     network.slug = 'ubitricity'
     network.website_url = 'https://www.ubitricity.co.uk/residential_charging/'
-    network.country = countries(:uk)
+    network.country = countries(:gb)
 
     assert network.valid?
   end
