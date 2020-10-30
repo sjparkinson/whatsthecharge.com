@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_25_153035) do
+ActiveRecord::Schema.define(version: 2020_10_29_193304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -28,7 +28,8 @@ ActiveRecord::Schema.define(version: 2020_10_25_153035) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "begins_at", precision: 6
-    t.datetime "ends_at", precision: 6
+    t.datetime "ended_at", precision: 6
+    t.index ["rateable_id"], name: "index_charging_rates_on_rateable_id", unique: true, where: "(ended_at IS NULL)"
     t.index ["rateable_type", "rateable_id"], name: "index_charging_rates_on_rateable_type_and_rateable_id"
     t.index ["supported_charging_speeds"], name: "index_charging_rates_on_supported_charging_speeds", using: :gin
   end
