@@ -13,13 +13,13 @@
           .visually-hidden Links
 
     %tbody
-      - @payg_plans.each_with_index do |payg_plan, index|
+      - @plans.each_with_index do |plan, index|
         %tr
           %td= index + 1
-          %td= link_to payg_plan.name, manage_payg_plan_path(payg_plan)
-          %td= payg_plan.network.name
+          %td= plan.name
+          %td= plan.network.name
           %td.text-right
-            = link_to 'Update', edit_manage_payg_plan_path(payg_plan)
-            = link_to 'Remove', manage_payg_plan_path(payg_plan), method: 'delete', class: 'link-danger', data: { confirm: "Are you sure?" }
+            = link_to 'Update', [:edit, :manage, plan]
+            = link_to 'Remove', [:manage, plan], method: 'delete', class: 'link-danger', data: { confirm: "Are you sure?" }
 
 %p= link_to "Add a #{PaygPlan.model_name.human}", new_manage_payg_plan_path, class: "btn btn-primary"

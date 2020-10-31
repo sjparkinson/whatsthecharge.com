@@ -1,43 +1,43 @@
-- if @membership_plan.errors.any?
+- if @plan.errors.any?
   .alert.alert-danger{role: "alert"}
     %ul.mb-0
-      - @membership_plan.errors.full_messages.each do |error|
+      - @plan.errors.full_messages.each do |error|
         %li= error
 
-= form_with model: [:manage, @membership_plan], local: true do |form|
+= form_with model: [:manage, @plan], local: true do |form|
 
   .mb-3
-    = form.label :name, class: 'form-label'
-    = form.text_field :name, required: true, class: 'form-control'
+    = form.label :name
+    = form.text_field :name, required: true
 
   .mb-3
-    = form.label :description, class: 'form-label'
-    = form.text_area :description, required: true, class: 'form-control'
+    = form.label :description
+    = form.text_area :description, required: true
 
   .row.mb-3.g-3
     .col-3
-      = form.label :cost_currency, class: 'form-label'
-      = form.select :cost_currency, [["GBP", "GBP"], ["EUR", "EUR"]], { prompt: true }, { required: true, class: "form-select" }
+      = form.label :cost_currency
+      = form.select :cost_currency, [["GBP", "GBP"], ["EUR", "EUR"]], { prompt: true }, { required: true }
     .col
-      = form.label :cost, class: 'form-label'
-      = form.number_field :cost, min: 0, step: 0.01, required: true, class: 'form-control'
+      = form.label :cost
+      = form.number_field :cost, min: 0, step: 0.01, required: true
 
   .mb-3
-    = form.label :cost_frequency, class: 'form-label'
+    = form.label :cost_frequency
     = form.select :cost_frequency, MembershipPlan.cost_frequencies.keys.collect { |frequency| [MembershipPlan.human_attribute_name("cost_frequencies.#{frequency}"), frequency]}, { prompt: true }, { required: true, class: "form-select" }
 
   .mb-3
-    = form.label :network_id, class: 'form-label'
-    = form.grouped_collection_select :network_id, Country.all, :networks, :name, :id, :name, { prompt: true }, { required: true, class: "form-select" }
+    = form.label :network_id
+    = form.grouped_collection_select :network_id, Country.all, :networks, :name, :id, :name, { prompt: true }, { required: true }
 
   .mb-3
-    = form.label :plan_url, class: 'form-label'
-    = form.url_field :plan_url, class: 'form-control', 'aria-describedby': 'membership_plan_plan_url_help'
+    = form.label :plan_url
+    = form.url_field :plan_url, 'aria-describedby': 'membership_plan_plan_url_help'
     .form-text#membership_plan_plan_url_help Optional.
 
   .mb-3
-    = form.label :ended_at, class: 'form-label'
-    = form.date_field :ended_at, class: 'form-control', 'aria-describedby': 'membership_plan_ended_at_help'
+    = form.label :ended_at
+    = form.date_field :ended_at, 'aria-describedby': 'membership_plan_ended_at_help'
     .form-text#membership_plan_ended_at_help When this membership plan stopped being available. Optional.
 
   .mb-3

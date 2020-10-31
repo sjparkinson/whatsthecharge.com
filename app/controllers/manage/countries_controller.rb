@@ -2,7 +2,7 @@ class Manage::CountriesController < Manage::ManageController
   before_action :set_country, only: %i[edit update destroy]
 
   def index
-    @countries = Country.all
+    @countries = Country.includes(:networks).select(:id, :name, :countryCode).all
   end
 
   def new

@@ -1,18 +1,18 @@
 class Manage::MembershipPlansController < Manage::ManageController
-  before_action :set_membership_plan, only: %i[edit update destroy]
+  before_action :set_plan, only: %i[edit update destroy]
 
   def index
-    @membership_plans = MembershipPlan.all
+    @plans = MembershipPlan.all
   end
 
   def new
-    @membership_plan = MembershipPlan.new
+    @plan = MembershipPlan.new
   end
 
   def create
-    @membership_plan = MembershipPlan.new(membership_plans_params)
+    @plan = MembershipPlan.new(plan_params)
 
-    if @membership_plan.save
+    if @plan.save
       redirect_to manage_membership_plans_path
     else
       render :new
@@ -23,7 +23,7 @@ class Manage::MembershipPlansController < Manage::ManageController
   end
 
   def update
-    if @membership_plan.update(membership_plans_params)
+    if @plan.update(plan_params)
       redirect_to manage_membership_plans_path
     else
       render :edit
@@ -31,17 +31,17 @@ class Manage::MembershipPlansController < Manage::ManageController
   end
 
   def destroy
-    @membership_plan.destroy
+    @plan.destroy
     redirect_to manage_membership_plans_path
   end
 
   private
 
-  def set_membership_plan
-    @membership_plan = MembershipPlan.find(params[:id])
+  def set_plan
+    @plan = MembershipPlan.find params[:id]
   end
 
-  def membership_plans_params
+  def plan_params
     params.require(:membership_plan).permit(
       :name,
       :description,

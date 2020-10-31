@@ -24,8 +24,8 @@
             %code= country.countryCode
           %td= country.networks.size
           %td.text-right
-            = link_to 'Update', edit_manage_country_path(country)
+            = link_to 'Update', [:edit, :manage, country]
             - if country.networks.none?
-              = link_to 'Remove', manage_country_path(country), method: 'delete', class: 'link-danger disabled', data: { confirm: "Are you sure?" }
+              = link_to 'Remove', [:manage, country], method: 'delete', class: 'link-danger disabled', data: { confirm: "Are you sure?" }
 
 %p= link_to 'Add a country', new_manage_country_path, class: "btn btn-primary"

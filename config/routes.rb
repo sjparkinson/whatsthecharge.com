@@ -15,10 +15,9 @@ Rails.application.routes.draw do
 
   # Manage the records, add new networks, update prices, etc.
   get '/manage', to: redirect('/manage/countries')
-
-  namespace :manage do
-    resources :countries, only: %w[index new edit create update destroy]
-    resources :networks, only: %w[index new edit create update destroy]
+  namespace :manage, except: %w[show] do
+    resources :countries
+    resources :networks
     resources :payg_plans
     resources :membership_plans
   end

@@ -10,28 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_103642) do
+ActiveRecord::Schema.define(version: 2020_10_30_150917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
-
-  create_table "charging_rates", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Costs by charging speed for membership and pay-as-you-go plans.", force: :cascade do |t|
-    t.string "rateable_type"
-    t.uuid "rateable_id"
-    t.text "description"
-    t.money "price_per_kwh", scale: 2, comment: "Cost per kWh for this charging speed."
-    t.string "price_per_kwh_currency", comment: "ISO 4217 three character currency code."
-    t.money "price_per_minute", scale: 2, comment: "Cost per minute for this charging speed."
-    t.string "price_per_minute_currency", comment: "ISO 4217 three character currency code."
-    t.integer "supported_charging_speeds", comment: "Charging speeds supported by this rate in kWh, e.g. 7, 22, and 50.", array: true
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "ended_at", precision: 6
-    t.index ["rateable_id"], name: "index_charging_rates_on_rateable_id", unique: true, where: "(ended_at IS NULL)"
-    t.index ["rateable_type", "rateable_id"], name: "index_charging_rates_on_rateable_type_and_rateable_id"
-    t.index ["supported_charging_speeds"], name: "index_charging_rates_on_supported_charging_speeds", using: :gin
-  end
 
   create_table "countries", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Supported countries.", force: :cascade do |t|
     t.string "name", null: false

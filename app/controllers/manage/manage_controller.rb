@@ -7,6 +7,8 @@ class Manage::ManageController < ActionController::Base
   helper_method :current_user
   helper_method :logged_in?
 
+  default_form_builder BootstrapFormBuilder
+
   # Returns the current logged-in user (if any).
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]

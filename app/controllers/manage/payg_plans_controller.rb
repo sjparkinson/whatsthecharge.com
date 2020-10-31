@@ -1,21 +1,21 @@
 class Manage::PaygPlansController < Manage::ManageController
-  before_action :set_payg_plan, only: %i[show edit update destroy]
+  before_action :set_plan, only: %i[show edit update destroy]
 
   def index
-    @payg_plans = PaygPlan.all
+    @plans = PaygPlan.all
   end
 
   def show
   end
 
   def new
-    @payg_plan = PaygPlan.new
+    @plan = PaygPlan.new
   end
 
   def create
-    @payg_plan = PaygPlan.new(payg_plans_params)
+    @plan = PaygPlan.new(payg_plans_params)
 
-    if @payg_plan.save
+    if @plan.save
       redirect_to manage_payg_plans_path
     else
       render :new
@@ -26,7 +26,7 @@ class Manage::PaygPlansController < Manage::ManageController
   end
 
   def update
-    if @payg_plan.update(payg_plans_params)
+    if @plan.update(plans_params)
       redirect_to manage_payg_plans_path
     else
       render :edit
@@ -34,17 +34,17 @@ class Manage::PaygPlansController < Manage::ManageController
   end
 
   def destroy
-    @payg_plan.destroy
+    @plan.destroy
     redirect_to manage_payg_plans_path
   end
 
   private
 
-  def set_payg_plan
-    @payg_plan = PaygPlan.find(params[:id])
+  def set_plan
+    @plan = PaygPlan.find params[:id]
   end
 
-  def payg_plans_params
+  def plans_params
     params.require(:payg_plan).permit(
       :name,
       :description,
