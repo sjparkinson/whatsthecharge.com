@@ -1,14 +1,14 @@
 = render 'nav'
 
-= page_heading PaygPlan.model_name.human(count: 2)
+= page_heading PaygPlanCost.model_name.human(count: 2)
 
 .table-responsive
   %table.table
     %thead
       %tr
         %th{scope: "col"} #
-        %th{scope: "col"}= t :name, scope: [:activerecord, :attributes, :payg_plan]
-        %th{scope: "col"}= t :network, scope: [:activerecord, :attributes, :payg_plan]
+        %th{scope: "col"}= t :name, scope: [:activerecord, :attributes, :payg_plan_costs]
+        %th{scope: "col"}= t :network, scope: [:activerecord, :attributes, :payg_plan_costs]
         %th{scope: "col"}
           .visually-hidden Links
 

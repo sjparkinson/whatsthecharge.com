@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_150917) do
+ActiveRecord::Schema.define(version: 2020_10_31_144223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(version: 2020_10_30_150917) do
     t.index ["countryCode"], name: "index_countries_on_countryCode", unique: true
   end
 
+  create_table "membership_plan_costs", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Current and historic costs for membership plans.", force: :cascade do |t|
+    t.text "description"
+    t.money "cost_per_kwh", scale: 2
+    t.string "cost_per_kwh_currency", comment: "ISO 4217 three character currency code."
+    t.money "cost_per_minute", scale: 2
+    t.string "cost_per_minute_currency", comment: "ISO 4217 three character currency code."
+    t.datetime "ended_at", comment: "When this cost becomes unavailable."
+    t.uuid "membership_plan_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["membership_plan_id"], name: "index_membership_plan_costs_on_membership_plan_id"
+    t.index ["membership_plan_id"], name: "index_null_ended_at_membership_plan_costs_on_membership_plan_id", unique: true, where: "(ended_at IS NULL)"
+  end
+
   create_table "membership_plans", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Network memberships, e.g. Source London's Full membership.", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -35,8 +49,10 @@ ActiveRecord::Schema.define(version: 2020_10_30_150917) do
     t.money "cost", scale: 2, comment: "The recurring or one-off cost of this plan."
     t.string "cost_currency", comment: "ISO 4217 three character currency code."
     t.integer "cost_frequency", null: false, comment: "The cost frequency enum, e.g. none, annually, monthly, etc."
+    t.integer "power_outputs", comment: "Supported power outputs, e.g. 7, 11, 22.", array: true
     t.index ["cost_frequency"], name: "index_membership_plans_on_cost_frequency"
     t.index ["network_id"], name: "index_membership_plans_on_network_id"
+    t.index ["power_outputs"], name: "index_membership_plans_on_power_outputs", using: :gin
   end
 
   create_table "networks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -55,6 +71,20 @@ ActiveRecord::Schema.define(version: 2020_10_30_150917) do
     t.index ["slug"], name: "index_networks_on_slug"
   end
 
+  create_table "payg_plan_costs", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Current and historic costs for pay as you go plans.", force: :cascade do |t|
+    t.text "description"
+    t.money "cost_per_kwh", scale: 2
+    t.string "cost_per_kwh_currency", comment: "ISO 4217 three character currency code."
+    t.money "cost_per_minute", scale: 2
+    t.string "cost_per_minute_currency", comment: "ISO 4217 three character currency code."
+    t.datetime "ended_at", comment: "When this cost becomes unavailable."
+    t.uuid "payg_plan_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["payg_plan_id"], name: "index_null_ended_at_payg_plan_costs_on_payg_plan_id", unique: true, where: "(ended_at IS NULL)"
+    t.index ["payg_plan_id"], name: "index_payg_plan_costs_on_payg_plan_id"
+  end
+
   create_table "payg_plans", id: :uuid, default: -> { "gen_random_uuid()" }, comment: "Network pay-as-you-go plans, e.g. Polar Instant.", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -63,7 +93,9 @@ ActiveRecord::Schema.define(version: 2020_10_30_150917) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "ended_at", precision: 6
     t.string "plan_url"
+    t.integer "power_outputs", comment: "Supported power outputs, e.g. 7, 11, 22.", array: true
     t.index ["network_id"], name: "index_payg_plans_on_network_id"
+    t.index ["power_outputs"], name: "index_payg_plans_on_power_outputs", using: :gin
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -74,7 +106,9 @@ ActiveRecord::Schema.define(version: 2020_10_30_150917) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "membership_plan_costs", "membership_plans"
   add_foreign_key "membership_plans", "networks"
   add_foreign_key "networks", "countries"
+  add_foreign_key "payg_plan_costs", "payg_plans"
   add_foreign_key "payg_plans", "networks"
 end

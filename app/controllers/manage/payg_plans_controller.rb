@@ -5,15 +5,14 @@ class Manage::PaygPlansController < Manage::ManageController
     @plans = PaygPlan.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @plan = PaygPlan.new
   end
 
   def create
-    @plan = PaygPlan.new(payg_plans_params)
+    @plan = PaygPlan.new(plans_params)
 
     if @plan.save
       redirect_to manage_payg_plans_path
@@ -22,8 +21,7 @@ class Manage::PaygPlansController < Manage::ManageController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @plan.update(plans_params)

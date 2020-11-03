@@ -44,12 +44,28 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     super
   end
 
-  def collection_select(method, collection, value_method, text_method, options = {}, html_options = {})
+  def collection_select(
+    method,
+    collection,
+    value_method,
+    text_method,
+    options = {},
+    html_options = {}
+  )
     html_options.reverse_merge!(class: 'form-select')
     super
   end
 
-  def grouped_collection_select(method, collection, group_method, group_label_method, option_key_method, option_value_method, options = {}, html_options = {})
+  def grouped_collection_select(
+    method,
+    collection,
+    group_method,
+    group_label_method,
+    option_key_method,
+    option_value_method,
+    options = {},
+    html_options = {}
+  )
     html_options.reverse_merge!(class: 'form-select')
     super
   end

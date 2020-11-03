@@ -1,0 +1,12 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+current:
+  cost_per_kwh: 0.25
+  cost_per_kwh_currency: GBP
+  membership_plan: polar_plus
+
+previous:
+  cost_per_kwh: 0.30
+  cost_per_kwh_currency: GBP
+  membership_plan: polar_plus
+  ended_at: 2020-01-01 00:00:00

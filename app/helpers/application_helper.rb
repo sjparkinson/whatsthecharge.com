@@ -10,4 +10,14 @@ module ApplicationHelper # Set the page title in <head>
     content_for(:title) { title }
     content_tag(:h2, title)
   end
+
+  # link_to for nav elements
+  def link_to_nav(body, url, html_options = {})
+    classes = %w[nav-link]
+    classes << 'active' if current_page?(url)
+    html_options.merge!({ class: classes.join(' ') })
+    content_tag :li do
+      link_to body, url, html_options
+    end
+  end
 end

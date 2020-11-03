@@ -55,4 +55,5 @@ Rails.application.configure do
   # Configuration to work behind the GitHub Codespaces reverse proxy
   config.hosts.clear
   config.action_controller.default_protect_from_forgery = false
+  config.web_console.permissions = %w(0.0.0.0/0 ::/0)
 end

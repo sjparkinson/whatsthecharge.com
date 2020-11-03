@@ -1,0 +1,32 @@
+- if @plan.errors.any?
+  .alert.alert-danger{role: "alert"}
+    %ul.mb-0
+      - @plan.errors.full_messages.each do |error|
+        %li= error
+
+= form_with model: [:manage, @plan], local: true do |form|
+
+  .mb-3
+    = form.label :name
+    = form.text_field :name, required: true
+
+  .mb-3
+    = form.label :description
+    = form.text_area :description, required: true
+
+  .mb-3
+    = form.label :network_id
+    = form.grouped_collection_select :network_id, Country.all, :networks, :name, :id, :name, { prompt: true }, { required: true }
+
+  .mb-3
+    = form.label :plan_url
+    = form.url_field :plan_url, 'aria-describedby': 'payg_plan_plan_url_help'
+    .form-text#payg_plan_plan_url_help Optional.
+
+  .mb-3
+    = form.label :ended_at
+    = form.date_field :ended_at, 'aria-describedby': 'payg_plan_ended_at_help'
+    .form-text#payg_plan_ended_at_help When this pay as you go plan stopped being available. Optional.
+
+  .mb-3
+    = form.submit class: 'btn btn-primary'

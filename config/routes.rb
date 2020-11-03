@@ -18,8 +18,14 @@ Rails.application.routes.draw do
   namespace :manage, except: %w[show] do
     resources :countries
     resources :networks
-    resources :payg_plans
-    resources :membership_plans
+
+    resources :payg_plans do
+      resources :costs, controller: 'payg_plan_costs'
+    end
+
+    resources :membership_plans do
+      resources :costs, controller: 'membership_plan_costs'
+    end
   end
 
   get 'login', to: 'manage/sessions#new'

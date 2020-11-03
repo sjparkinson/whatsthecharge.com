@@ -2,7 +2,8 @@ class Manage::CountriesController < Manage::ManageController
   before_action :set_country, only: %i[edit update destroy]
 
   def index
-    @countries = Country.includes(:networks).select(:id, :name, :countryCode).all
+    @countries =
+      Country.includes(:networks).select(:id, :name, :countryCode).all
   end
 
   def new
@@ -19,8 +20,7 @@ class Manage::CountriesController < Manage::ManageController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @country.update(country_params)

@@ -1,5 +1,5 @@
 class Manage::ManageController < ActionController::Base
-  layout "manage"
+  layout 'manage'
 
   before_action :authorized
   before_action :add_x_robots_tag

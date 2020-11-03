@@ -19,8 +19,7 @@ class Manage::MembershipPlansController < Manage::ManageController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @plan.update(plan_params)
