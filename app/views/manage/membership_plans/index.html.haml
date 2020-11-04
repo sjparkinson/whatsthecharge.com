@@ -19,7 +19,6 @@
           %td= plan.name
           %td= plan.network.name
           %td.text-right
-            = link_to 'Costs', manage_membership_plan_costs_path(plan)
             = link_to 'Update', [:edit, :manage, plan]
             = link_to 'Remove', [:manage, plan], method: 'delete', class: 'link-danger', data: { confirm: "Are you sure?" }
 

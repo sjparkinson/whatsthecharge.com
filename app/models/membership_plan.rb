@@ -7,7 +7,7 @@ class MembershipPlan < ApplicationRecord
        _prefix: true
 
   belongs_to :network
-  has_many :membership_plan_costs
+  has_many :membership_plan_costs, dependent: :destroy
   has_one :current_membership_plan_cost,
           -> { current },
           class_name: MembershipPlanCost.name
