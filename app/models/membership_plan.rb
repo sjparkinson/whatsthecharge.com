@@ -1,7 +1,5 @@
 class MembershipPlan < ApplicationRecord
-  validates_presence_of :name
-
-  validates_uniqueness_of :plan_url, allow_nil: true
+  validates :name, presence: true
 
   enum cost_frequency: {
          once: 0, annually: 1, quarterly: 2, monthly: 3, weekly: 4

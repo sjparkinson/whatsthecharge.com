@@ -45,12 +45,12 @@ en-GB:
       payg_plan:
         one: Pay As You Go Plan
         other: Pay As You Go Plans
+      payg_plan_cost:
+        one: PAYG Cost
+        other: PAYG Costs
       membership_plan:
         one: Membership Plan
         other: Membership Plans
-      charging_rate:
-        one: Charging Rate
-        other: Charging Rates
     attributes:
       country:
         countryCode: Country Code
@@ -61,6 +61,12 @@ en-GB:
         ios_app_url: iOS App URL
       payg_plan:
         plan_url: Plan URL
+        ended_at: Ended
+      payg_plan_cost:
+        cost_per_kwh: Price per kWh
+        cost_per_kwh_currency: Currency
+        cost_per_minute: Price per minute
+        cost_per_minute_currency: Currency
         ended_at: Ended
       membership_plan:
         plan_url: Plan URL
@@ -74,9 +80,3 @@ en-GB:
         quarterly: Quarterly
         monthly: Monthly
         weekly: Weekly
-      charging_rate:
-        description: Description
-        price_per_kwh: Price per kWh
-        price_per_minute: Price per minute
-        supported_charging_speeds: Charging Speeds (in kW)
-        ended_at: Ended

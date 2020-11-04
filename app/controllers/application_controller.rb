@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_countries
+    @countries = Country.all.select(:name, :countryCode)
     @country = Country.find_by(countryCode: params[:countryCode])
-    @countries = Country.all
-  end
+  end # Populates the nav country dropdown.
 end

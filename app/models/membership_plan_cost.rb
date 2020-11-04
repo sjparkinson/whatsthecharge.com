@@ -1,7 +1,8 @@
 class MembershipPlanCost < ApplicationRecord
-  validates_uniqueness_of :membership_plan,
-                          conditions: -> { where ended_at: nil },
-                          unless: :ended_at?
+  validates :membership_plan,
+            uniqueness: {
+              conditions: -> { where ended_at: nil }, unless: :ended_at?
+            }
 
   validate :require_cost_per_kwh_or_minute
 

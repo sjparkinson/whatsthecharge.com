@@ -1,4 +1,4 @@
-require 'country_constraints'
+require 'routing_constraints/country_constraint'
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # Redirect to a country from the actual root path
   root to: 'index#root'
 
-  scope ':countryCode', countryCode: /[a-z]{2}/, constraints: CountryConstraints.new, defaults: { countryCode: 'gb' } do
+  scope ':countryCode', countryCode: /[a-z]{2}/, constraints: CountryConstraint.new, defaults: { countryCode: 'gb' } do
     resources :networks, param: :slug, only: %i[index]
   end
 
@@ -20,11 +20,11 @@ Rails.application.routes.draw do
     resources :networks
 
     resources :payg_plans do
-      resources :costs, controller: 'payg_plan_costs'
+      resources :payg_plan_costs
     end
 
     resources :membership_plans do
-      resources :costs, controller: 'membership_plan_costs'
+      resources :membership_plan_costs
     end
   end
 

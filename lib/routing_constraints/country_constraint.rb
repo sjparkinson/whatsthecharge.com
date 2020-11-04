@@ -1,4 +1,4 @@
-class CountryConstraints
+class CountryConstraint
   def matches?(request)
     # Using find_by here, rather than exists?, as the same query is
     # then cachable in application_controller.rb
