@@ -28,8 +28,5 @@ module WhatsthechargeCom
     # Configure locales for date and time formatting.
     config.i18n.available_locales = 'en-GB'
     config.i18n.default_locale = 'en-GB'
-
-    # Handle error pages using routes.rb (e.g. via /404 or /500)
-    config.exceptions_app = self.routes
   end
 end
