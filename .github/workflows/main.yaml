@@ -165,7 +165,7 @@ jobs:
 
       - run: kubectl apply -k k8s/
 
-      - run: kubectl rollout status deployment/whatsthecharge.com --timeout=10m
+      - run: kubectl rollout status deployment/whatsthecharge.com --timeout=15m
 
       - name: Run rails db:migrate
         run: |
