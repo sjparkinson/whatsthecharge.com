@@ -110,7 +110,7 @@ jobs:
             })
 
       - name: Install pack
-        run: curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.14.1/pack-v0.14.1-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack
+        run: curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.14.2/pack-v0.14.2-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack
 
       - name: Run docker login
         run: docker login docker.pkg.github.com --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
