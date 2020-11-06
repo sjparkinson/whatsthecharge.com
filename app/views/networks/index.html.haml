@@ -1,6 +1,11 @@
-= page_heading "Charging networks"
+= page_heading "Public charging networks"
 
-%p.lead.mb-4.mt-3= "There are #{@networks.size} charging networks being tracked."
+%p.lead.mb-3.mt-3= "There are #{@networks.size} charging networks being tracked."
+
+%p.mb-4
+  Many electric vehicle owners rely on public charging infrastructure to charge
+  on a regular basis. Below you'll find a list of all the major charging networks
+  along with their typical costs, either by kWh or by minute.
 
 .row.row-cols-1.row-cols-md-3.g-3.mb-3
   - @networks.each do |network|

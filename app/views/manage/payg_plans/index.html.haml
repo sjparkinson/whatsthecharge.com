@@ -19,6 +19,7 @@
           %td= payg_plan.name
           %td= payg_plan.network.name
           %td.text-right
+            = link_to 'Costs', manage_payg_plan_payg_plan_costs_path(payg_plan)
             = link_to 'Update', [:edit, :manage, payg_plan]
             = link_to 'Remove', [:manage, payg_plan], method: 'delete', class: 'link-danger', data: { confirm: "Are you sure?" }
 

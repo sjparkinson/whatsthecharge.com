@@ -17,11 +17,11 @@
       - @payg_plan_costs.each_with_index do |cost, index|
         %tr
           %td= index + 1
-          %td= cost.cost_per_kwh
-          %td= cost.cost_per_minute
+          %td= "#{cost.cost_per_kwh_currency} #{cost.cost_per_kwh}"
+          %td= "#{cost.cost_per_minute_currency} #{cost.cost_per_minute}"
           %td= cost.ended_at
           %td.text-right
-            = link_to 'Update', [:edit, :manage, cost]
-            = link_to 'Remove', [:manage, cost], method: 'delete', class: 'link-danger', data: { confirm: "Are you sure?" }
+            = link_to 'Update', [:edit, :manage, @payg_plan, cost]
+            = link_to 'Remove', [:manage, @payg_plan, cost], method: 'delete', class: 'link-danger', data: { confirm: "Are you sure?" }
 
-%p= link_to "Add a #{PaygPlanCost.model_name.human}", new_manage_payg_plan_cost_path, class: "btn btn-primary"
+%p= link_to "Add a #{PaygPlanCost.model_name.human}", new_manage_payg_plan_payg_plan_cost_path, class: "btn btn-primary"

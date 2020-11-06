@@ -26,7 +26,6 @@ class PaygPlansControllerTest < ActionDispatch::IntegrationTest
              ended_at: ''
            }
          }
-
     assert_redirected_to manage_payg_plans_path
   end
 
@@ -36,9 +35,6 @@ class PaygPlansControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update' do
-    get edit_manage_payg_plan_path(payg_plans(:polar_instant))
-    assert_response :success
-
     patch manage_payg_plan_path(payg_plans(:polar_instant)),
           params: {
             payg_plan: {

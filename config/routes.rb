@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   # Redirect to a country from the actual root path
   root to: 'index#root'
 
-  scope ':countryCode', countryCode: /[a-z]{2}/, constraints: CountryConstraint.new, defaults: { countryCode: 'gb' } do
+  scope ':countryCode', countryCode: /[a-z]{2}/, constraints: CountryConstraint.new do
+    get '/', to: 'index#country', as: 'country'
     resources :networks, param: :slug, only: %i[index]
   end
 
@@ -23,9 +24,7 @@ Rails.application.routes.draw do
       resources :payg_plan_costs
     end
 
-    resources :membership_plans do
-      resources :membership_plan_costs
-    end
+    resources :membership_plans
   end
 
   get 'login', to: 'manage/sessions#new'
