@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   scope ':countryCode', countryCode: /[a-z]{2}/, constraints: CountryConstraint.new do
     get '/', to: 'index#country', as: 'country'
-    resources :networks, param: :slug, only: %i[index]
+    resources :networks, param: :slug, only: %i[index show]
   end
 
   # Manage the records, add new networks, update prices, etc.
