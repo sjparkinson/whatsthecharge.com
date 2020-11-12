@@ -2,8 +2,8 @@
 module ApplicationHelper # Set the page title in <head>
   def page_title(separator = ' &middot; ')
     title = ['What\'s the charge?']
-    title << @country.name if @country
-    title << content_for(:title)
+    title.unshift @country.name if @country
+    title.unshift content_for(:title)
     title.compact.join(separator).html_safe
   end
 
