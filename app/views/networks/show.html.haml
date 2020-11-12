@@ -14,3 +14,22 @@
     - if @network.ios_app_url
       %a{href: @network.ios_app_url}>
         %img{src: "https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-US", alt: "Download #{@network.name} on the App Store", width: 180}>
+
+
+- if @network.membership_plans.size > 0
+
+  %h3.mb-3 Memberships
+
+  .row.row-cols-1.row-cols-md-2.g-3
+
+    - @network.membership_plans.each do |membership_plan|
+      .col
+        .card
+          .card-body
+            %h5.card-title= membership_plan.name
+            %p.card-text= membership_plan.description
+            %p.card-text= "#{membership_plan.cost_currency} #{membership_plan.cost}"
+            %p.card-text= "Subscription frequency is #{MembershipPlan.human_attribute_name("cost_frequencies.#{membership_plan.cost_frequency}").downcase}."
+            - if membership_plan.plan_url
+              %p.card-link= link_to "See the details", membership_plan.plan_url
+
