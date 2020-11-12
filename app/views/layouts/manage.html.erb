@@ -45,13 +45,15 @@
         </div>
     </main>
 
-    <% if Rails.env.development? -%>
     <footer class="border-top text-muted py-5">
         <div class="container">
+            <p>Built and maintained by <a href="mailto:samuel.parkinson@hey.com">Samuel Parkinson</a> as a small side project.</p>
+
+            <% if Rails.env.development? -%>
             <%= debug(params) %>
+            <%- end %>
         </div>
     </footer>
-    <%- end %>
 
     <%= javascript_pack_tag "application" %>
   </body>
