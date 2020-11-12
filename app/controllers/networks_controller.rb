@@ -4,11 +4,13 @@ class NetworksController < ApplicationController
   def index
     @networks = Network.where(country: @country)
 
-    fresh_when @networks, public: true
+    expires_in 0.seconds, public: true
+    fresh_when @networks
   end
 
   def show
-    fresh_when @network, public: true
+    expires_in 0.seconds, public: true
+    fresh_when @network
   end
 
   private
