@@ -31,5 +31,5 @@
             %p.card-text= "#{membership_plan.cost_currency} #{membership_plan.cost}"
             %p.card-text= "Subscription frequency is #{MembershipPlan.human_attribute_name("cost_frequencies.#{membership_plan.cost_frequency}").downcase}."
             - if membership_plan.plan_url
-              %p.card-link= link_to "See the details", membership_plan.plan_url
+              .card-link= link_to "See the subscription details", membership_plan.plan_url
 
