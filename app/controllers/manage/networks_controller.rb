@@ -2,7 +2,7 @@ class Manage::NetworksController < Manage::ManageController
   before_action :set_network, only: %i[edit update destroy]
 
   def index
-    @networks = Network.all
+    @networks = Network.all.order(name: :asc)
   end
 
   def new

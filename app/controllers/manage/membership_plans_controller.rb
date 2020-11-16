@@ -2,7 +2,7 @@ class Manage::MembershipPlansController < Manage::ManageController
   before_action :set_plan, only: %i[edit update destroy]
 
   def index
-    @plans = MembershipPlan.all
+    @plans = MembershipPlan.all.order(network_id: :asc)
   end
 
   def new

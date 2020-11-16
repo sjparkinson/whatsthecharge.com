@@ -2,7 +2,7 @@ class Manage::PaygPlansController < Manage::ManageController
   before_action :set_payg_plan, only: %i[edit update destroy]
 
   def index
-    @payg_plans = PaygPlan.all.order(network_id: :desc)
+    @payg_plans = PaygPlan.all.order(network_id: :asc)
   end
 
   def new

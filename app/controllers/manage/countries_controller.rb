@@ -3,7 +3,7 @@ class Manage::CountriesController < Manage::ManageController
 
   def index
     @countries =
-      Country.includes(:networks).select(:id, :name, :countryCode).all
+      Country.includes(:networks).select(:id, :name, :countryCode).all.order(name: :asc)
   end
 
   def new
