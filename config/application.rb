@@ -28,5 +28,10 @@ module WhatsthechargeCom
     # Configure locales for date and time formatting.
     config.i18n.available_locales = 'en-GB'
     config.i18n.default_locale = 'en-GB'
+
+    # Specify the Cache-Control header for assets
+    config.public_file_server.headers = {
+      'Cache-Control' => 'max-age=31536000, public'
+    }
   end
 end
