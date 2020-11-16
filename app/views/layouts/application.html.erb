@@ -43,7 +43,6 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
-                <% if @countries.present? -%>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="country-dropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                         <%= @country.name %>
@@ -55,7 +54,6 @@
                         <%- end %>
                     </ul>
                 </li>
-                <%- end %>
             </ul>
         </div>
         </div>

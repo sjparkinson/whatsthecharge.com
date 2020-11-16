@@ -5,12 +5,12 @@ class NetworksController < ApplicationController
     @networks = Network.where(country: @country).order(name: :desc)
 
     expires_in 0.seconds, public: true
-    fresh_when @networks
+    fresh_when etag: @networks
   end
 
   def show
     expires_in 0.seconds, public: true
-    fresh_when @network
+    fresh_when etag: @network
   end
 
   private

@@ -4,7 +4,7 @@
 
 %p= link_to "Go to the #{@network.name} website", @network.website_url
 
-%h3.my-3 Download the apps
+%h3.mt-4.mb-3 Download the apps
 
 .row.align-items-center.g-3
   .col-md-auto.text-center
@@ -17,13 +17,13 @@
       %a{href: @network.ios_app_url}>
         = image_tag "app-store-badge.png", height: 48, alt: "Download #{@network.name} on the App Store"
 
-%h3.my-3 Pay as you go costs
+%h3.mt-4.mb-3 Pay as you go costs
 
 Coming soon...
 
 - if @network.membership_plans.size > 0
 
-  %h3.my-3 Subscriptions
+  %h3.mt-4.mb-3 Subscriptions
 
   .row.row-cols-1.row-cols-md-2.g-3
 
