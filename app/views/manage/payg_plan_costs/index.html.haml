@@ -7,8 +7,7 @@
     %thead
       %tr
         %th{scope: "col"} #
-        %th{scope: "col"}= t :cost_per_kwh, scope: [:activerecord, :attributes, :payg_plan_cost]
-        %th{scope: "col"}= t :cost_per_minute, scope: [:activerecord, :attributes, :payg_plan_cost]
+        %th{scope: "col"} Cost
         %th{scope: "col"}= t :ended_at, scope: [:activerecord, :attributes, :payg_plan_cost]
         %th{scope: "col"}
           .visually-hidden Links
@@ -17,8 +16,7 @@
       - @payg_plan_costs.each_with_index do |cost, index|
         %tr
           %td= index + 1
-          %td= "#{cost.cost_per_kwh_currency} #{cost.cost_per_kwh}"
-          %td= "#{cost.cost_per_minute_currency} #{cost.cost_per_minute}"
+          %td= cost.cost_formatted
           %td= cost.ended_at
           %td.text-right
             = link_to 'Update', [:edit, :manage, @payg_plan, cost]

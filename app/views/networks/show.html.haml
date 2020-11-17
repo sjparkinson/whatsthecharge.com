@@ -17,24 +17,33 @@
       %a{href: @network.ios_app_url}>
         = image_tag "app-store-badge.png", height: 48, alt: "Download #{@network.name} on the App Store"
 
-%h3.mt-4.mb-3 Pay as you go costs
+- if @network.payg_plans.present?
 
-Coming soon...
+  %h3.mt-4.mb-3 Pay as you go plans
 
-- if @network.membership_plans.size > 0
+  .row.row-cols-1.row-cols-md-2.g-3
+    - @network.payg_plans.each do |payg_plan|
+      .col
+        .card
+          .card-body
+            %h5.card-title= payg_plan.name
+            %p.card-text= payg_plan.description
+            %p.card-text.lead= payg_plan.current_payg_plan_cost.cost_formatted
+            - if payg_plan.plan_url
+              .card-link= link_to "See the details", payg_plan.plan_url
+
+- if @network.membership_plans.present?
 
   %h3.mt-4.mb-3 Subscriptions
 
   .row.row-cols-1.row-cols-md-2.g-3
-
     - @network.membership_plans.each do |membership_plan|
       .col
         .card
           .card-body
             %h5.card-title= membership_plan.name
             %p.card-text= membership_plan.description
-            %p.card-text= "#{membership_plan.cost_currency} #{membership_plan.cost}"
-            %p.card-text= "Subscription frequency is #{MembershipPlan.human_attribute_name("cost_frequencies.#{membership_plan.cost_frequency}").downcase}."
+            %p.card-text.lead= "#{membership_plan.cost_formatted} #{MembershipPlan.human_attribute_name("cost_frequencies_per_period.#{membership_plan.cost_frequency}").downcase}"
             - if membership_plan.plan_url
               .card-link= link_to "See the subscription details", membership_plan.plan_url
 

@@ -9,6 +9,8 @@ require 'action_view/railtie' # require "action_cable/engine"
 require 'sprockets/railtie'
 require 'rails/test_unit/railtie'
 
+require 'money'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -28,6 +30,8 @@ module WhatsthechargeCom
     # Configure locales for date and time formatting.
     config.i18n.available_locales = 'en-GB'
     config.i18n.default_locale = 'en-GB'
+    Money.locale_backend = :i18n
+    Money.rounding_mode = BigDecimal::ROUND_HALF_UP
 
     # Specify the Cache-Control header for assets
     config.public_file_server.headers = {

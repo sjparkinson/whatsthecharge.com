@@ -80,3 +80,9 @@ en-GB:
         quarterly: Quarterly
         monthly: Monthly
         weekly: Weekly
+      membership_plan/cost_frequencies_per_period:
+        once: One-off
+        annually: per year
+        quarterly: per quarter
+        monthly: per month
+        weekly: per week
