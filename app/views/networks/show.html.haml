@@ -4,19 +4,6 @@
 
 %p= link_to "Go to the #{@network.name} website", @network.website_url
 
-%h3.mt-4.mb-3 Download the apps
-
-.row.align-items-center.g-3
-  .col-md-auto.text-center
-    - if @network.android_app_url
-      %a{:href => @network.android_app_url}>
-        = image_tag "play-store-badge.png", height: 48, alt: "Get #{@network.name} on Google Play"
-
-  .col-md-auto.text-center
-    - if @network.ios_app_url
-      %a{href: @network.ios_app_url}>
-        = image_tag "app-store-badge.png", height: 48, alt: "Download #{@network.name} on the App Store"
-
 - if @network.payg_plans.present?
 
   %h3.mt-4.mb-3 Pay as you go plans
