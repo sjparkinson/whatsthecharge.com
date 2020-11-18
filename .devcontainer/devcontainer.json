@@ -33,5 +33,5 @@
 	"forwardPorts": [3000, 5432],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "bundle install && yarn install && bundle exec rails db:setup"
+	"postCreateCommand": "source /usr/local/rvm/scripts/rvm && source /usr/local/share/nvm/nvm.sh && bundle install && yarn install && bundle exec rails db:setup"
 }
