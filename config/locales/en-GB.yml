@@ -43,14 +43,14 @@ en-GB:
         one: Network
         other: Networks
       payg_plan:
-        one: Pay As You Go Plan
-        other: Pay As You Go Plans
+        one: Pay As You Go
+        other: Pay As You Go
       payg_plan_cost:
         one: PAYG Cost
         other: PAYG Costs
       membership_plan:
-        one: Membership Plan
-        other: Membership Plans
+        one: Subscription
+        other: Subscriptions
     attributes:
       country:
         countryCode: Country Code

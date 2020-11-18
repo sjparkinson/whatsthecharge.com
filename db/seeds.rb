@@ -7,4 +7,4 @@
 #   Character.create!(name: 'Luke', movie: movies.first)
 
 # The default value for the countryCode route parameter.
-Country.create(name: 'Great Britain', countryCode: 'gb')
+Country.create(name: 'United Kingdom', countryCode: 'gb')

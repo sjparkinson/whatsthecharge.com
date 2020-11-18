@@ -42,6 +42,12 @@ bundle exec rails server
 
 You should then be able to visit http://localhost:3000.
 
+To test out the management pages, you'll need to create a user you can login with.
+
+```
+bundle exec rails runner "User.create(email: 'user@example.com', password: 'hunter2')"
+```
+
 ## Running on Kubernetes
 
 There is a Kubernetes deployment defined in `k8s/`.

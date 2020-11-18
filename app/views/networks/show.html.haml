@@ -8,7 +8,7 @@
 
   %h3.mt-4.mb-3 Pay as you go plans
 
-  .row.row-cols-1.row-cols-md-2.g-3
+  .row.row-cols-1.g-3
     - @network.payg_plans.each do |payg_plan|
       .col
         .card
@@ -23,7 +23,7 @@
 
   %h3.mt-4.mb-3 Subscriptions
 
-  .row.row-cols-1.row-cols-md-2.g-3
+  .row.row-cols-1.g-3
     - @network.membership_plans.each do |membership_plan|
       .col
         .card

@@ -17,8 +17,7 @@ module ApplicationHelper # Set the page title in <head>
   def link_to_manage_nav(body, url, html_options = {})
     classes = %w[nav-link]
     classes << 'active' if current_page?(url)
-    classes << 'active' if url == '/manage/payg_plans' && controller_name == 'payg_plan_costs'
-    classes << 'active' if url == '/manage/membership_plans' && controller_name == 'membership_plan_costs'
+    classes << 'active' if url.include?(controller_name)
     html_options.merge!({ class: classes.join(' ') })
     content_tag :li do
       link_to body, url, html_options
