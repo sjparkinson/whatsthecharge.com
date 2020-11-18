@@ -1,10 +1,10 @@
 FROM mcr.microsoft.com/vscode/devcontainers/ruby:2.7
 
 # Install Ruby
-RUN source /usr/local/rvm/scripts/rvm && rvm install 2.7.2 2>&1
+RUN rvm install 2.7.2 2>&1
 
 # Install Node.js
-RUN source /usr/local/share/nvm/nvm.sh && nvm install 14.13.1 2>&1
+RUN nvm install 14.13.1 2>&1
 
 # Install additional Ruby gems
 RUN gem install rails webdrivers solargraph
