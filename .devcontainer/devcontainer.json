@@ -1,37 +1,19 @@
 {
-	"name": "Ruby & PostgreSQL",
+	"name": "Ruby on Rails & PostgreSQL",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspace",
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": {
-		"terminal.integrated.shell.linux": "/bin/bash",
-		"sqltools.connections": [{
-			"name": "Container database",
-			"driver": "PostgreSQL",
-			"previewLimit": 50,
-			"server": "localhost",
-			"port": 5432,
-			"database": "whatsthecharge_development",
-			"username": "postgres",
-			"password": "postgres"
-		}]
-	},
-
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
         "bung87.rails",
-        "castwide.solargraph",
         "editorconfig.editorconfig",
-		"mtxr.sqltools",
-        "mtxr.sqltools-driver-pg",
         "rebornix.ruby"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [3000, 5432],
+	"forwardPorts": [3000],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "source /usr/local/rvm/scripts/rvm && source /usr/local/share/nvm/nvm.sh && bundle install && yarn install && bundle exec rails db:setup"
+	"postCreateCommand": "echo \"SECRET_KEY_BASE=$(bundle exec rails secret)\" > .env"
 }
