@@ -1,0 +1,80 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: whatsthecharge-postgres
+  labels:
+    app.kubernetes.io/name: whatsthecharge-postgres
+    app.kubernetes.io/component: database
+    app.kubernetes.io/part-of: whatsthecharge.com
+spec:
+  serviceName: whatsthecharge-postgres
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgres
+      app.kubernetes.io/component: database
+      app.kubernetes.io/part-of: whatsthecharge.com
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/component: database
+        app.kubernetes.io/part-of: whatsthecharge.com
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:12
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: hunter2
+            - name: POSTGRES_DB
+              value: whatsthecharge_production
+          ports:
+            - name: postgres
+              containerPort: 5432
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+              subPath: whatsthecharge
+          livenessProbe: &healthcheck
+            tcpSocket:
+              port: 5432
+            initialDelaySeconds: 5
+          readinessProbe:
+            <<: *healthcheck
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 16Gi
+        storageClassName: do-block-storage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whatsthecharge-postgres
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: database
+    app.kubernetes.io/part-of: whatsthecharge.com
+spec:
+  clusterIP: None
+  ports:
+    - name: postgres
+      port: 5432
+  selector:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: database
+    app.kubernetes.io/part-of: whatsthecharge.com
