@@ -1,0 +1,13 @@
+name: Delete package versions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  package-cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/delete-package-versions@v1
+        with:
+          num-old-versions-to-delete: 100
